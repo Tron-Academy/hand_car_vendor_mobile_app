@@ -1,0 +1,105 @@
+import 'package:flutter/material.dart';
+import 'package:handcar_ventor/core/theme/color_palette.dart';
+import 'package:handcar_ventor/core/theme/extensions/color_extention.dart';
+import 'package:handcar_ventor/core/theme/extensions/space_extension.dart';
+import 'package:handcar_ventor/core/theme/extensions/typography_extention.dart';
+import 'package:handcar_ventor/gen/fonts.gen.dart';
+
+final lightTheme = ThemeData(
+    brightness: Brightness.light,
+  
+    useMaterial3: true,
+    extensions: [
+      ColorExtention(
+        primary: ColorPalette.blue500,
+        background: ColorPalette.grey100,
+        primaryTxt: ColorPalette.black400,
+        secondaryTxt: ColorPalette.grey,
+        white: ColorPalette.white,
+        warning: ColorPalette.red,
+        backgroundSubtle: ColorPalette.white100,
+      ),
+      TypographyExtention(
+        h1: TextStyle(
+            fontSize: 34,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.bold),
+        h2: TextStyle(
+            fontSize: 24,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.bold),
+        h3: TextStyle(
+            fontSize: 20,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.bold),
+        subtitle: TextStyle(
+            fontSize: 14,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+        body: TextStyle(
+            fontSize: 14,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+        bodyMedium: TextStyle(
+            fontSize: 14,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w500),
+        bodySemiBold: TextStyle(
+            fontSize: 14,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w600),
+        bodySmall: TextStyle(
+            fontSize: 12,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+        bodySmallMedium: TextStyle(
+            fontSize: 12,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w500),
+        bodySmallSemiBold: TextStyle(
+            fontSize: 12,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w600),
+        bodyLarge: TextStyle(
+            fontSize: 18,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w600),
+        bodyLargeMedium: TextStyle(
+            fontSize: 18,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w500),
+        bodyLargeSemiBold: TextStyle(
+            fontSize: 18,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w600),
+        caption: TextStyle(
+            fontSize: 12,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+        buttonTxt: TextStyle(
+            fontSize: 14,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+        button2: TextStyle(
+            fontSize: 16,
+            fontFamily: FontFamily.manrope,
+            color: ColorPalette.black400,
+            fontWeight: FontWeight.w400),
+      ),
+      AppSpaceExtension.fromBaseSpace(8),
+    ]);
