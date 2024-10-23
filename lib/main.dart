@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:handcar_ventor/core/theme/dark_theme.dart';
 import 'package:handcar_ventor/core/theme/light_theme.dart';
-import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
+import 'package:handcar_ventor/features/dashboard/view/pages/navigation_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,10 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const DashboardPage(),
+      home: const NavigationPage(),
     );
   }
 }
