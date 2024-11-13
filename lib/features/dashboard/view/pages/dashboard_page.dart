@@ -19,7 +19,6 @@ class DashboardPage extends HookWidget {
         leading: IconButton(
           icon: Icon(
             Icons.menu,
-            color: context.colors.white,
           ),
           onPressed: () {},
         ),
@@ -123,7 +122,7 @@ class ContainerWidget extends HookWidget {
           horizontal: context.space.space_50, vertical: context.space.space_50),
       child: Container(
         decoration: BoxDecoration(
-          color: isDarkMode ? Color(0xff3B3B3D) : Color(0xffEDE9FA),
+          color: isDarkMode ? const Color(0xff3B3B3D) : const Color(0xffEDE9FA),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(children: [

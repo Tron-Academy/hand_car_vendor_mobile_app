@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
+import 'package:handcar_ventor/features/dashboard/view/widgets/drop_down_button_widget.dart';
 
 class ServiceStatusContainerWidget extends StatelessWidget {
   final String customer;
@@ -30,7 +31,9 @@ class ServiceStatusContainerWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color:isDarkMode ? Color(0xff3B3B3D) : Color(0xffEDE9FA)),
+          borderRadius: BorderRadius.circular(10),
+          color:
+              isDarkMode ? const Color(0xff3B3B3D) : const Color(0xffEDE9FA)),
       child: Padding(
         padding: EdgeInsets.all(context.space.space_100),
         child: Column(
@@ -68,21 +71,22 @@ class ServiceStatusContainerWidget extends StatelessWidget {
                   children: [
                     Text(type, style: context.typography.bodyMedium),
                     SizedBox(height: context.space.space_100),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: context.space.space_100,
-                        vertical: context.space.space_50,
-                      ),
-                      decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        status,
-                        style: context.typography.bodyMedium
-                            .copyWith(color: color),
-                      ),
-                    ),
+                    // Container(
+                    //   padding: EdgeInsets.symmetric(
+                    //     horizontal: context.space.space_100,
+                    //     vertical: context.space.space_50,
+                    //   ),
+                    //   decoration: BoxDecoration(
+                    //     color: color.withOpacity(0.1),
+                    //     borderRadius: BorderRadius.circular(12),
+                    //   ),
+                    //   child: Text(
+                    //     status,
+                    //     style: context.typography.bodyMedium
+                    //         .copyWith(color: color),
+                    //   ),
+                    // ),
+                    StatusDropdownButton()
                   ],
                 ),
               ],

@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   circle_nav_bar: ^2.1.1
+  cool_dropdown: ^2.1.1
   flutter:
     sdk: flutter
   flutter_gen: ^5.8.0
