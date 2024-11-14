@@ -22,16 +22,16 @@ class StatusDropdownButton extends HookWidget {
           child: Text(
             value,
             style: TextStyle(
-              color: value == 'Completed' ? Colors.green : null,
+              color: value == 'Completed' ? Colors.green : Colors.redAccent,
             ),
           ),
         );
       }).toList(),
       style: TextStyle(
-        color: selectedStatus.value == 'Completed' ? Colors.green : null,
+        color: selectedStatus.value == 'Completed'
+            ? Colors.green
+            : Colors.redAccent,
       ),
     );
   }
 }
-
-

@@ -86,7 +86,7 @@ class ServiceStatusContainerWidget extends StatelessWidget {
                     //         .copyWith(color: color),
                     //   ),
                     // ),
-                    StatusDropdownButton()
+                    const StatusDropdownButton()
                   ],
                 ),
               ],

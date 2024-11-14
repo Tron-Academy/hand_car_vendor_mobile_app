@@ -17,7 +17,7 @@ class DashboardPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
           ),
           onPressed: () {},
