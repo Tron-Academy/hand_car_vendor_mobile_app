@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/services/view/pages/add_service_page.dart';
-
 
 class ServicePage extends StatelessWidget {
   const ServicePage({super.key});
@@ -9,7 +9,7 @@ class ServicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Services'),
+        title: const Text('Services'),
         centerTitle: true,
         actions: [
           TextButton.icon(
@@ -19,8 +19,10 @@ class ServicePage extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const AddServiceScreen()));
             },
-            icon: const Icon(Icons.add),
-            label: const Text('Add'),
+            icon: Icon(Icons.add, color: context.colors.primary),
+            label: Text('Add',
+                style: context.typography.bodyMedium
+                    .copyWith(color: context.colors.primary)),
           ),
         ],
       ),
