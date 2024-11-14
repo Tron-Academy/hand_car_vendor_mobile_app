@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
-import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
+
 import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/total_service_page.dart';
+import 'package:handcar_ventor/features/services/view/pages/add_service_page.dart';
+import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 class NavigationPage extends HookWidget {
   const NavigationPage({super.key});
@@ -36,7 +38,7 @@ class NavigationPage extends HookWidget {
         children: const [
           TotalServicePage(),
           DashboardPage(),
-          AddServiceScreen(),
+          ServicePage(),
           SubscriptionsPage(),
         ],
       ),
