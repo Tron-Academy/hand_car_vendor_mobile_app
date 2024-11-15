@@ -13,14 +13,14 @@ class VendorDashboard extends HookWidget {
     // Using hooks to manage state
     final upcomingServices = useState([
       {
-        'customerName': 'John Doe',
-        'carModel': 'Toyota Camry',
+        'customerName': 'Leo Messi',
+        'carModel': 'Maserati',
         'serviceType': 'Oil Change',
         'scheduledTime': DateTime.now().add(const Duration(hours: 2)),
       },
       {
-        'customerName': 'Jane Smith',
-        'carModel': 'Honda Civic',
+        'customerName': 'Ronaldo',
+        'carModel': 'Ferrari',
         'serviceType': 'Brake Inspection',
         'scheduledTime': DateTime.now().add(const Duration(hours: 4)),
       },
@@ -28,14 +28,14 @@ class VendorDashboard extends HookWidget {
 
     final recentServices = useState([
       {
-        'customerName': 'Mike Johnson',
-        'carModel': 'Ford Focus',
+        'customerName': 'Mohammed Salah',
+        'carModel': 'Mercedes',
         'serviceType': 'Tire Rotation',
         'amount': 45.00,
         'date': DateTime.now().subtract(const Duration(days: 1)),
       },
       {
-        'customerName': 'Sarah Williams',
+        'customerName': 'Neymar',
         'carModel': 'BMW X3',
         'serviceType': 'Full Service',
         'amount': 299.99,

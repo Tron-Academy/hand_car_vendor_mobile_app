@@ -57,13 +57,13 @@ class NavigationPage extends HookWidget {
             fontWeight: FontWeight.w600,
             color: isDarkMode ? Colors.white : Colors.white,
           ),
-          unselectedLabelStyle: context.typography.bodyMedium.copyWith(
+          unselectedLabelStyle: context.typography.body.copyWith(
             color: isDarkMode ? Colors.white70 : Colors.white70,
           ),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.sync_alt, size: 20),
-              label: "Total Service",
+              label: "Service Requests",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home, size: 20),
@@ -71,7 +71,7 @@ class NavigationPage extends HookWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.supervisor_account_outlined, size: 20),
-              label: "Services Requests",
+              label: "Services ",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.card_membership, size: 20),
