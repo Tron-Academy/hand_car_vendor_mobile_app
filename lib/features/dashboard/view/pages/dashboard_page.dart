@@ -1,165 +1,139 @@
-import 'dart:core';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
-import 'package:handcar_ventor/core/theme/color_palette.dart';
-import 'package:handcar_ventor/features/dashboard/view/widgets/drawer_widget.dart';
-import 'package:handcar_ventor/features/dashboard/view/widgets/service_status_container_widget.dart';
-import 'package:handcar_ventor/gen/assets.gen.dart';
+import 'package:handcar_ventor/features/dashboard/view/widgets/card_home_widget.dart';
+import 'package:handcar_ventor/features/dashboard/view/widgets/recent_service_card_widget.dart';
+import 'package:handcar_ventor/features/dashboard/view/widgets/upcoming_service.dart';
 
-class DashboardPage extends HookWidget {
-  const DashboardPage({super.key});
+class VendorDashboard extends HookWidget {
+  const VendorDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Using hooks to manage state
+    final upcomingServices = useState([
+      {
+        'customerName': 'John Doe',
+        'carModel': 'Toyota Camry',
+        'serviceType': 'Oil Change',
+        'scheduledTime': DateTime.now().add(const Duration(hours: 2)),
+      },
+      {
+        'customerName': 'Jane Smith',
+        'carModel': 'Honda Civic',
+        'serviceType': 'Brake Inspection',
+        'scheduledTime': DateTime.now().add(const Duration(hours: 4)),
+      },
+    ]);
+
+    final recentServices = useState([
+      {
+        'customerName': 'Mike Johnson',
+        'carModel': 'Ford Focus',
+        'serviceType': 'Tire Rotation',
+        'amount': 45.00,
+        'date': DateTime.now().subtract(const Duration(days: 1)),
+      },
+      {
+        'customerName': 'Sarah Williams',
+        'carModel': 'BMW X3',
+        'serviceType': 'Full Service',
+        'amount': 299.99,
+        'date': DateTime.now().subtract(const Duration(days: 2)),
+      },
+    ]);
+
+    // Animation hook for statistics cards
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 800),
+    );
+
+    final scaleAnimation = useAnimation(
+      Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(
+          parent: animationController,
+          curve: Curves.easeOutBack,
+        ),
+      ),
+    );
+
+    // Effect hook to start animation
+    useEffect(() {
+      animationController.forward();
+      return null;
+    }, []);
+
+    // Callback hooks
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-          ),
-          onPressed: () {},
-        ),
-        title: Text(
-          'Dashboard',
-          style: context.typography.h3,
-        ),
+        title: Text(' Dashboard', style: context.typography.h3),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.notifications),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.message_outlined),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
+            icon: const Icon(Icons.settings),
             onPressed: () {},
           ),
         ],
       ),
-      drawer: const DrawerWidget(),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(context.space.space_200),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 120,
-              child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    ContainerWidget(
-                      title: 'Services Requests',
-                      icon: Assets.icons.icService,
-                      count: '2000',
-                    ),
-                    ContainerWidget(
-                      title: 'Transactions',
-                      icon: Assets.icons.icTransaction,
-                      count: '20',
-                    )
-                  ]),
+            Transform.scale(
+              scale: scaleAnimation,
+              child: _buildStatisticsCards(),
             ),
-            SizedBox(
-              height: context.space.space_75,
+            SizedBox(height: context.space.space_250),
+            UpcomingServiceCard(services: upcomingServices.value),
+            SizedBox(height: context.space.space_250),
+            RecentServiceCard(
+              services: recentServices.value,
             ),
-            Expanded(
-              child: ListView(children: [
-                ServiceStatusContainerWidget(
-                  customer: 'Leo Messi',
-                  time: 'Yesterday 10:00AM',
-                  location: 'First Street, 123,Barcelona,Spain',
-                  service: 'Car Wash',
-                  status: 'Pending',
-                  price: '\$100',
-                  color: context.colors.warning,
-                  type: 'Service',
-                ),
-                SizedBox(
-                  height: context.space.space_100,
-                ),
-                ServiceStatusContainerWidget(
-                  customer: 'Cristiano Ronaldo',
-                  time: 'Today 12:00PM',
-                  location: 'Santiago Bernou, 123,Madrid,Spain',
-                  service: 'Painting Service',
-                  status: 'Completed',
-                  price: '\$159',
-                  color: ColorPalette.green,
-                  type: 'Service',
-                ),
-              ]),
-            )
           ],
         ),
       ),
     );
   }
-}
 
-class ContainerWidget extends HookWidget {
-  final String title;
-  final String icon;
-  final String count;
-  const ContainerWidget({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.count,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: context.space.space_50, vertical: context.space.space_50),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isDarkMode ? const Color(0xff3B3B3D) : const Color(0xffEDE9FA),
-          borderRadius: BorderRadius.circular(10),
+  Widget _buildStatisticsCards() {
+    return GridView.count(
+      crossAxisCount: 2,
+      crossAxisSpacing: 16.0,
+      mainAxisSpacing: 16.0,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: const [
+        CardWidget(
+          title: 'Total Services',
+          value: '198',
+          color: Colors.blue,
+          icon: Icons.build,
         ),
-        child: Column(children: [
-          Row(children: [
-            Padding(
-              padding: EdgeInsets.all(context.space.space_100),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xffEDE9FA),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(context.space.space_100),
-                  child: SvgPicture.asset(
-                    icon,
-                    height: 30,
-                    width: 30,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: context.space.space_200),
-              child: Text(title, style: context.typography.bodyLarge),
-            )
-          ]),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: context.space.space_900),
-                child: Text(count, style: context.typography.h3),
-              ),
-            ],
-          )
-        ]),
-      ),
+        CardWidget(
+          title: 'Service Requests',
+          value: '40',
+          color: Colors.green,
+          icon: Icons.group_add_rounded,
+        ),
+        CardWidget(
+          title: 'Total Subscriptions',
+          value: '200',
+          color: Colors.orange,
+          icon: Icons.card_membership,
+        ),
+        CardWidget(
+          title: 'Completion Rate',
+          value: '95%',
+          color: Colors.purple,
+          icon: Icons.check_circle,
+        ),
+      ],
     );
   }
 }

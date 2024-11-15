@@ -35,7 +35,7 @@ class NavigationPage extends HookWidget {
         },
         children: const [
           TotalServicePage(),
-          DashboardPage(),
+          VendorDashboard(),
           ServicePage(),
           SubscriptionsPage(),
         ],
@@ -74,8 +74,8 @@ class NavigationPage extends HookWidget {
               label: "Services Requests",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline, size: 20),
-              label: "Profile",
+              icon: Icon(Icons.card_membership, size: 20),
+              label: "Subscriptions",
             ),
           ],
         ),

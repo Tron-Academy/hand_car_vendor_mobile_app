@@ -26,6 +26,9 @@ class ServicePage extends StatelessWidget {
           ),
         ],
       ),
+      body: Column(
+        
+      ),
     );
   }
 }
