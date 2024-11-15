@@ -30,7 +30,7 @@ class ServicePage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 10,
-        itemBuilder: (context, index) => ServiceCardWidget(
+        itemBuilder: (context, index) => const ServiceCardWidget(
           title: 'Steam Wash',
           subtitle: 'Washing',
           price: '1243',

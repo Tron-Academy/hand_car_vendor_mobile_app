@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 
-
-
 class ServiceCardWidget extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -18,7 +16,9 @@ class ServiceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      margin: EdgeInsets.symmetric(
+          vertical: context.space.space_100,
+          horizontal: context.space.space_200),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -41,10 +41,10 @@ class ServiceCardWidget extends StatelessWidget {
                       color: context.colors.primaryTxt,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: context.space.space_100),
                   Text(
                     subtitle,
-                    style: context.typography.bodySmall.copyWith(
+                    style: context.typography.bodyMedium.copyWith(
                       color: Colors.grey,
                     ),
                   ),
@@ -60,20 +60,20 @@ class ServiceCardWidget extends StatelessWidget {
                   'AED $price',
                   style: context.typography.bodyMedium.copyWith(
                     color: Colors.green,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: context.space.space_100),
                 Row(
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.edit, color: Colors.blue),
+                      icon: Icon(Icons.edit, color: context.colors.primary),
                       tooltip: "Edit Service",
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.delete_outline, color: Colors.red),
+                      icon: Icon(Icons.delete_outline,
+                          color: context.colors.primary),
                       tooltip: "Delete Service",
                     ),
                   ],

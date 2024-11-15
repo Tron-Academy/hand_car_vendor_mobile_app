@@ -2,13 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/core/utils/image_picker_provider.dart';
+import 'package:handcar_ventor/core/widgets/button_widget.dart';
+import 'package:handcar_ventor/core/widgets/outline_button_widget.dart';
 import 'package:handcar_ventor/features/services/view/widgets/image_upload_button_widget.dart';
-import 'package:handcar_ventor/features/services/view/widgets/outline_button_widget.dart';
 import 'package:handcar_ventor/features/services/view/widgets/price_field_widget.dart';
 import 'package:handcar_ventor/features/services/view/widgets/text_label_widget.dart';
 import 'package:handcar_ventor/features/services/view/widgets/textfield_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
- // Make sure to import the OutlineToggleButton file here
+// Make sure to import the OutlineToggleButton file here
 
 class AddServiceScreen extends HookConsumerWidget {
   const AddServiceScreen({super.key});
@@ -84,24 +85,18 @@ class AddServiceScreen extends HookConsumerWidget {
             const PriceField(),
             SizedBox(height: context.space.space_200),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                OutlineToggleButton(
-                  label: "Cancel",
-                  outlineIcon: Icons.cancel_outlined,
-                  filledIcon: Icons.cancel,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                OutlineToggleButton(
-                  label: "Save",
-                  outlineIcon: Icons.save_outlined,
-                  filledIcon: Icons.save,
-                  onTap: () {
-                    // Add save functionality here
-                  },
-                ),
+                OutlineButtonWidget(
+                    label: 'Cancel',
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+                ButtonWidget(
+                    label: 'Save',
+                    onTap: () {
+                      // Add save functionality here
+                    }),
               ],
             ),
           ],
