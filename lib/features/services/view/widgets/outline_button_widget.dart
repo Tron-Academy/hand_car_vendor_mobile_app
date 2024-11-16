@@ -6,6 +6,7 @@ class OutlineToggleButton extends HookWidget {
   final String label;
   final IconData outlineIcon;
   final IconData filledIcon;
+  final Color outlineColor;
   final VoidCallback onTap;
 
   const OutlineToggleButton({
@@ -13,6 +14,7 @@ class OutlineToggleButton extends HookWidget {
     required this.label,
     required this.outlineIcon,
     required this.filledIcon,
+    required this.outlineColor,
     required this.onTap,
   });
 
@@ -26,29 +28,24 @@ class OutlineToggleButton extends HookWidget {
         onTap();
       },
       child: Container(
-        height: 50,
-        width: 150,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: isOutline.value ? null : context.colors.primary,
-          border: isOutline.value
-              ? Border.all(color: context.colors.primary)
-              : null,
+          borderRadius: BorderRadius.circular(20),
+          color: isOutline.value ? null : outlineColor,
+          border: isOutline.value ? Border.all(color: outlineColor) : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               isOutline.value ? outlineIcon : filledIcon,
-              color: isOutline.value ? context.colors.primary : Colors.white,
+              color: isOutline.value ? outlineColor : Colors.white,
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: context.space.space_100),
             Text(
               label,
-              style: TextStyle(
-                fontSize: 16,
-                color: isOutline.value ? context.colors.primary : Colors.white,
+              style: context.typography.bodyMedium.copyWith(
+                color: isOutline.value ? outlineColor : Colors.white,
               ),
             ),
           ],

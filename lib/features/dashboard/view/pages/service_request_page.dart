@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
+import 'package:handcar_ventor/features/services/view/widgets/service_request_card_widget.dart';
 
 class ServiceRequestPage extends StatelessWidget {
   const ServiceRequestPage({super.key});
@@ -7,10 +8,18 @@ class ServiceRequestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<UserData> users = [
-      UserData(name: 'Tom Cruise', mobile: '1234567890', service: 'Maintenance'),
-      UserData(name: 'Angelina Jolie', mobile: '1234567890', service: 'Maintenance'),
-      UserData(name: 'Dwayne Johnson', mobile: '1234567890', service: 'Maintenance'),
-      UserData(name: 'Irfan Khan', mobile: '1234567890', service: 'Maintenance'),
+      UserData(
+          name: 'Tom Cruise',
+          mobile: '+44 7481 848 484',
+          service: 'Tyre Change'),
+      UserData(
+          name: 'Tom Holland', mobile: '+91 9876543210', service: 'Denting'),
+      UserData(
+          name: 'Ana de Armas', mobile: '+7876543210', service: 'Car Wash'),
+      UserData(
+          name: 'Keenu Reaves',
+          mobile: '+971 52 111 2233',
+          service: 'Interior Cleaning'),
     ];
 
     return DefaultTabController(
@@ -18,13 +27,12 @@ class ServiceRequestPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Service Requests', style: context.typography.bodyLarge),
-          // ignore: prefer_const_constructors
-          bottom: TabBar(
+          bottom: const TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
+            indicatorColor: Colors.black,
+            labelColor: Colors.black,
             unselectedLabelColor: Colors.grey,
-            tabs: const [
+            tabs: [
               Tab(text: 'In Progress'),
               Tab(text: 'Pending'),
               Tab(text: 'Completed'),
@@ -33,9 +41,14 @@ class ServiceRequestPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            ListView.builder(
+            ListView.separated(
               itemCount: users.length, // specify the item count
-              itemBuilder: (context, index) => UserRowWidget(userData: users[index]),
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemBuilder: (context, index) => ServiceRequestCardWidget(
+                name: users[index].name,
+                phoneNumber: users[index].mobile,
+                serviceType: users[index].service,
+              ),
             ),
             const Center(child: Text('Pending')),
             const Center(child: Text('Completed')),
@@ -62,10 +75,26 @@ class UserRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(userData.name),
-      subtitle: Text(userData.service),
-      trailing: Text(userData.mobile),
+    return Card(
+      child: ListTile(
+        title: Text(userData.name),
+        subtitle: Column(
+          children: [
+            Text(userData.service),
+            Text(userData.mobile),
+          ],
+        ),
+        trailing: SizedBox(
+          width: 120, // Specify a width to avoid layout conflicts
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(onPressed: () {}, icon: Icon(Icons.close)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

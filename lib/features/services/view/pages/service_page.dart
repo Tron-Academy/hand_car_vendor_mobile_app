@@ -31,9 +31,9 @@ class ServicePage extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => const ServiceCardWidget(
-          title: 'Steam Wash',
-          subtitle: 'Washing',
-          price: '1243',
+          title: 'Tyre Change',
+          subtitle: 'General',
+          price: '124',
         ),
       ),
     );
