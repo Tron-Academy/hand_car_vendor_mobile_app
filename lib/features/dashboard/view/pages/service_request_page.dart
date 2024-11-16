@@ -18,6 +18,7 @@ class ServiceRequestPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Service Requests', style: context.typography.bodyLarge),
+          // ignore: prefer_const_constructors
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: Colors.white,
@@ -36,8 +37,8 @@ class ServiceRequestPage extends StatelessWidget {
               itemCount: users.length, // specify the item count
               itemBuilder: (context, index) => UserRowWidget(userData: users[index]),
             ),
-            Center(child: Text('Pending')),
-            Center(child: Text('Completed')),
+            const Center(child: Text('Pending')),
+            const Center(child: Text('Completed')),
           ],
         ),
       ),
