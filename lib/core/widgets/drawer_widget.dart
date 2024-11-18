@@ -14,18 +14,21 @@ class DrawerWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    //Animation Controller
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 300),
     );
     final image = ref.watch(imagePickerProviderProvider);
     final isMenuOpened = useState(false);
 
+    //Toggle Menu
     void toggleMenu() {
       isMenuOpened.value = !isMenuOpened.value;
       isMenuOpened.value ? controller.forward() : controller.reverse();
     }
-
+      //Trigger Animation
     final triggerAnimation = useState(false);
+    
     final resetTimer = useRef<Timer?>(null);
 
     void handleAnimationTrigger() {

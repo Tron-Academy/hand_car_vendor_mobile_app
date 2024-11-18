@@ -13,10 +13,16 @@ class NavigationPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Page Controller
     final pageController = usePageController(initialPage: 1);
+
+    //NavBar Index
     final navBarIndex = useState(1);
+
+    //Dark Mode
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
+    //On Tap Function for NavBar
     void onTap(int index) {
       navBarIndex.value = index;
       pageController.animateToPage(
@@ -29,6 +35,7 @@ class NavigationPage extends HookWidget {
     return Scaffold(
       backgroundColor:
           isDarkMode ? context.colors.background : context.colors.white,
+      //Drawer Widget
       drawer: const DrawerWidget(),
       body: PageView(
         controller: pageController,

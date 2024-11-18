@@ -6,6 +6,7 @@ import 'package:handcar_ventor/features/dashboard/view/widgets/recent_service_ca
 import 'package:handcar_ventor/features/dashboard/view/widgets/upcoming_service.dart';
 
 class VendorDashboard extends HookWidget {
+  static const route = '/vendor-dashboard';
   const VendorDashboard({super.key});
 
   @override
