@@ -16,7 +16,7 @@ class EditProfilePage extends HookConsumerWidget {
     final nameController = useTextEditingController(); //Name Controller
     final emailController = useTextEditingController(); //Email Controller
     final phoneController = useTextEditingController(); //Phone Controller
-    final whatsappController = useTextEditingController(); //Whatsapp Controller
+    final whatsappController = useTextEditingController(); //Whatsapp Number Controller
     final passwordController = useTextEditingController(); //Password Controller
     final locationController = useTextEditingController(); //Location Controller
 
@@ -93,12 +93,14 @@ class EditProfilePage extends HookConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  //Cancel Button
                   OutlineButtonWidget(
                     label: "Cancel",
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
+                  //Update Button
                   ButtonWidget(
                     label: "Update Profile",
                     onTap: () {},

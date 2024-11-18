@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 
+//User Data Class
 class UserData {
   final String name;
   final String mobile;
@@ -17,6 +18,7 @@ List<UserData> users = [
   UserData(name: 'Irfan Khan', mobile: '1234567890', service: 'Maintenance'),
 ];
 
+//User Row Widget
 class UserRowWidget extends StatelessWidget {
   final UserData userData;
 
