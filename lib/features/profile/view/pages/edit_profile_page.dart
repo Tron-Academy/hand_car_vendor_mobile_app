@@ -26,85 +26,87 @@ class EditProfilePage extends HookConsumerWidget {
         backgroundColor: context.colors.background,
         title: Text("Edit Profile", style: context.typography.h3),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.space.space_200),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Center(
-              //Profile Image
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oHKPn2K_N_VcudUb7nCNNZDMtiXJdqBeULs2Vqmx6xQsqoFt9xFWE-A&s'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.space.space_200),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Center(
+                //Profile Image
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oHKPn2K_N_VcudUb7nCNNZDMtiXJdqBeULs2Vqmx6xQsqoFt9xFWE-A&s'),
+                ),
               ),
-            ),
-            const TextLabel(label: "Full Name"),
-            SizedBox(height: context.space.space_100),
+              const TextLabel(label: "Full Name"),
+              SizedBox(height: context.space.space_100),
               //Name Field
-            TextFieldWidget(
-              controller: nameController,
-              hintText: "Enter Your Name",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Email Field
-            const TextLabel(label: "Email"),
-            SizedBox(height: context.space.space_100),
-            TextFieldWidget(
-              controller: emailController,
-              hintText: "Enter Your Email",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Phone Number Field
-            const TextLabel(label: "Phone Number"),
-            SizedBox(height: context.space.space_100),
-            TextFieldWidget(
-              controller: phoneController,
-              hintText: "Enter Your Phone Number",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Whatsapp Number Field
-            const TextLabel(label: "Whatsapp Number"),
-            SizedBox(height: context.space.space_100),
-            TextFieldWidget(
-              controller: whatsappController,
-              hintText: "Enter Your Whatsapp Number",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Password Field
-            const TextLabel(label: "Password"),
-            SizedBox(height: context.space.space_100),
-            TextFieldWidget(
-              controller: passwordController,
-              hintText: "Enter Your Password",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Location Field
-            const TextLabel(label: "Location"),
-            SizedBox(height: context.space.space_100),
-            TextFieldWidget(
-              controller: locationController,
-              hintText: "Enter Your Location",
-            ),
-            SizedBox(height: context.space.space_200),
-            //Update and Cancel Button
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OutlineButtonWidget(
-                  label: "Cancel",
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                ButtonWidget(
-                  label: "Update Profile",
-                  onTap: () {},
-                ),
-              ],
-            )
-          ],
+              TextFieldWidget(
+                controller: nameController,
+                hintText: "Enter Your Name",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Email Field
+              const TextLabel(label: "Email"),
+              SizedBox(height: context.space.space_100),
+              TextFieldWidget(
+                controller: emailController,
+                hintText: "Enter Your Email",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Phone Number Field
+              const TextLabel(label: "Phone Number"),
+              SizedBox(height: context.space.space_100),
+              TextFieldWidget(
+                controller: phoneController,
+                hintText: "Enter Your Phone Number",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Whatsapp Number Field
+              const TextLabel(label: "Whatsapp Number"),
+              SizedBox(height: context.space.space_100),
+              TextFieldWidget(
+                controller: whatsappController,
+                hintText: "Enter Your Whatsapp Number",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Password Field
+              const TextLabel(label: "Password"),
+              SizedBox(height: context.space.space_100),
+              TextFieldWidget(
+                controller: passwordController,
+                hintText: "Enter Your Password",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Location Field
+              const TextLabel(label: "Location"),
+              SizedBox(height: context.space.space_100),
+              TextFieldWidget(
+                controller: locationController,
+                hintText: "Enter Your Location",
+              ),
+              SizedBox(height: context.space.space_200),
+              //Update and Cancel Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlineButtonWidget(
+                    label: "Cancel",
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ButtonWidget(
+                    label: "Update Profile",
+                    onTap: () {},
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

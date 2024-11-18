@@ -16,6 +16,7 @@ class OutlineButtonWidget extends StatelessWidget {
     required this.onTap,
     this.isLoading = false,
   }) : isDanger = false;
+  //Outline Button Widget With Danger
 
   const OutlineButtonWidget.danger({
     super.key,
