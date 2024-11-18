@@ -1,18 +1,23 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
+import 'package:handcar_ventor/core/utils/image_picker_provider.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/hyper_text_widget.dart';
+import 'package:handcar_ventor/features/profile/view/pages/edit_profile_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DrawerWidget extends HookWidget {
+class DrawerWidget extends HookConsumerWidget {
   const DrawerWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 300),
     );
+    final image = ref.watch(imagePickerProviderProvider);
     final isMenuOpened = useState(false);
 
     void toggleMenu() {
@@ -49,13 +54,41 @@ class DrawerWidget extends HookWidget {
               color: context.colors.primary,
             ),
             child: Center(
-              child: HyperText(
-                text: "Muhammed Risan",
-                textStyle: context.typography.bodyLarge
-                    .copyWith(color: context.colors.white),
-                animateOnLoad: true,
-                duration: const Duration(milliseconds: 300),
-                animationTrigger: triggerAnimation.value,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(imagePickerProviderProvider.notifier)
+                          .pickImages();
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
+                      child: ClipOval(
+                        child: image.selectedImages.isEmpty
+                            ? const Icon(
+                                Icons.person,
+                                size: 50,
+                              )
+                            : Image.file(
+                                File(image.selectedImages.first.path),
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                              ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: context.space.space_100),
+                  HyperText(
+                    text: "Muhammed Risan",
+                    textStyle: context.typography.bodyLarge
+                        .copyWith(color: context.colors.white),
+                    animateOnLoad: true,
+                    duration: const Duration(milliseconds: 300),
+                    animationTrigger: triggerAnimation.value,
+                  ),
+                ],
               ),
             ),
           ),
@@ -66,7 +99,7 @@ class DrawerWidget extends HookWidget {
               progress: controller,
             ),
             title: HyperText(
-              text: "Home",
+              text: "Edit Profile",
               textStyle: context.typography.bodyLarge
                   .copyWith(color: context.colors.primary),
               animateOnLoad: true,
@@ -76,6 +109,10 @@ class DrawerWidget extends HookWidget {
             onTap: () {
               toggleMenu();
               handleAnimationTrigger();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EditProfilePage()));
             },
           ),
         ],

@@ -89,8 +89,8 @@ class UserRowWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.close)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.check)),
             ],
           ),
         ),

@@ -62,7 +62,7 @@ class ServiceRequestCardWidget extends StatelessWidget {
                     label: "Decline",
                     outlineIcon: Icons.close,
                     filledIcon: Icons.close,
-                    outlineColor: Color(0xffA70909),
+                    outlineColor: const Color(0xffA70909),
                     onTap: () {})
               ],
             ),
