@@ -9,6 +9,7 @@ import 'package:handcar_ventor/core/widgets/drawer_widget.dart';
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 class NavigationPage extends HookWidget {
+  static const route = "/navigation";
   const NavigationPage({super.key});
 
   @override

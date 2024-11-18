@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/core/utils/image_picker_provider.dart';
 import 'package:handcar_ventor/core/widgets/button_widget.dart';
@@ -12,13 +13,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // Make sure to import the OutlineToggleButton file here
 
 class AddServiceScreen extends HookConsumerWidget {
+  static const route = "/add-service";
   const AddServiceScreen({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
     final image = ref.watch(imagePickerProviderProvider);
     final selectedImages = image.selectedImages;
-
+    final nameController = useTextEditingController();
+    final categoryController = useTextEditingController();
+    final descriptionController = useTextEditingController();
+    final priceController = useTextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xffF5F6F9),
       appBar: AppBar(
@@ -33,16 +38,25 @@ class AddServiceScreen extends HookConsumerWidget {
             SizedBox(height: context.space.space_200),
             const TextLabel(label: "Name Of Service"),
             SizedBox(height: context.space.space_200),
-            const TextFieldWidget(hintText: 'Service Name'),
+            TextFieldWidget(
+              controller: nameController,
+              hintText: 'Service Name',
+            ),
             SizedBox(height: context.space.space_100),
             const TextLabel(label: "Service Category"),
             SizedBox(height: context.space.space_150),
-            const TextFieldWidget(hintText: 'Enter Service Category'),
+            TextFieldWidget(
+              controller: categoryController,
+              hintText: 'Enter Service Category',
+            ),
             SizedBox(height: context.space.space_200),
             const TextLabel(label: "Service Description"),
             SizedBox(height: context.space.space_150),
-            const TextFieldWidget(
-                hintText: 'Enter Service Description', isLarge: true),
+            TextFieldWidget(
+              controller: descriptionController,
+              hintText: 'Enter Service Description',
+              isLarge: true,
+            ),
             SizedBox(height: context.space.space_200),
             const TextLabel(label: "Service Image"),
             SizedBox(height: context.space.space_150),
@@ -82,7 +96,9 @@ class AddServiceScreen extends HookConsumerWidget {
             SizedBox(height: context.space.space_200),
             const TextLabel(label: "Price"),
             SizedBox(height: context.space.space_150),
-            const PriceField(),
+                  PriceField(
+              controller: priceController,
+            ),
             SizedBox(height: context.space.space_200),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

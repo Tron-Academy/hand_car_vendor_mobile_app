@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 
 class SubscriptionPage extends HookWidget {
+  static const route = "/subscriptions";
   const SubscriptionPage({super.key});
 
   @override

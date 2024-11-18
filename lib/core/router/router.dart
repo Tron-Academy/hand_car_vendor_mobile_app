@@ -1,8 +1,25 @@
 import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
+import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
+import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
+import 'package:handcar_ventor/features/profile/view/pages/edit_profile_page.dart';
+import 'package:handcar_ventor/features/services/view/pages/add_service_page.dart';
+import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 final router = GoRouter(
   routes: [
+    //Dashboard Routeq  
     GoRoute(path: VendorDashboard.route, builder: (context, state) => const VendorDashboard()),
+    //Add Service Route
+    GoRoute(path: AddServiceScreen.route, builder: (context, state) => const AddServiceScreen()),
+    //Service Route
+    GoRoute(path: ServicePage.route, builder: (context, state) => const ServicePage()),
+    //Edit Profile Route
+    GoRoute(path: EditProfilePage.route, builder: (context, state) => const EditProfilePage()),
+    //Service Request Route
+    GoRoute(path: ServiceRequestPage.route, builder: (context, state) => const ServiceRequestPage()),
+    //Subscriptions Route
+    GoRoute(path: SubscriptionPage.route, builder: (context, state) => const SubscriptionPage()),
+
   ],
 );

@@ -4,6 +4,7 @@ import 'package:handcar_ventor/features/services/view/pages/add_service_page.dar
 import 'package:handcar_ventor/features/services/view/widgets/service_card_widget.dart';
 
 class ServicePage extends StatelessWidget {
+  static const route = "/service";
   const ServicePage({super.key});
 
   @override
@@ -28,6 +29,7 @@ class ServicePage extends StatelessWidget {
           ),
         ],
       ),
+      //List View For Added Services
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => const ServiceCardWidget(

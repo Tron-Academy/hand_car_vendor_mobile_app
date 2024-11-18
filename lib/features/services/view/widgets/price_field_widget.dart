@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 
 class PriceField extends StatelessWidget {
-  const PriceField({super.key});
+  final TextEditingController controller;
+  const PriceField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

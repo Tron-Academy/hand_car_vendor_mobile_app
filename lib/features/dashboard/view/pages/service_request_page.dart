@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/services/view/widgets/service_request_card_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ServiceRequestPage extends StatelessWidget {
+class ServiceRequestPage extends HookConsumerWidget {
+  static const route = "/service-request";
   const ServiceRequestPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
     List<UserData> users = [
       UserData(
           name: 'Tom Cruise',

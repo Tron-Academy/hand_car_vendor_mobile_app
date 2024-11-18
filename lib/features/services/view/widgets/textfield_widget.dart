@@ -4,7 +4,8 @@ import 'package:handcar_ventor/core/extension/theme_extension.dart';
 class TextFieldWidget extends StatelessWidget {
   final String hintText;
   final bool isLarge;
-  const TextFieldWidget({super.key, required this.hintText, this.isLarge = false});
+  final TextEditingController controller;
+  const TextFieldWidget({super.key, required this.hintText, this.isLarge = false, required this.controller});
 
   @override
   Widget build(BuildContext context) {
