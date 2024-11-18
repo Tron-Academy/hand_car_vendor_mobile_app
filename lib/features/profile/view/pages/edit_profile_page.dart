@@ -13,6 +13,7 @@ class EditProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: AppBar(
+        backgroundColor: context.colors.background,
         title: Text("Edit Profile", style: context.typography.h3),
       ),
       body: Padding(
@@ -57,7 +58,9 @@ class EditProfilePage extends StatelessWidget {
               children: [
                 OutlineButtonWidget(
                   label: "Cancel",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 ButtonWidget(
                   label: "Update Profile",

@@ -66,9 +66,11 @@ class DrawerWidget extends HookConsumerWidget {
                       radius: 50,
                       child: ClipOval(
                         child: image.selectedImages.isEmpty
-                            ? const Icon(
-                                Icons.person,
-                                size: 50,
+                            ? Image.network(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oHKPn2K_N_VcudUb7nCNNZDMtiXJdqBeULs2Vqmx6xQsqoFt9xFWE-A&s',
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
                               )
                             : Image.file(
                                 File(image.selectedImages.first.path),
@@ -81,7 +83,7 @@ class DrawerWidget extends HookConsumerWidget {
                   ),
                   SizedBox(height: context.space.space_100),
                   HyperText(
-                    text: "Muhammed Risan",
+                    text: "Leo Messi",
                     textStyle: context.typography.bodyLarge
                         .copyWith(color: context.colors.white),
                     animateOnLoad: true,
@@ -113,6 +115,21 @@ class DrawerWidget extends HookConsumerWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const EditProfilePage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: HyperText(
+              text: "Logout",
+              textStyle: context.typography.bodyLarge
+                  .copyWith(color: context.colors.primary),
+              animateOnLoad: true,
+              duration: const Duration(milliseconds: 300),
+              animationTrigger: triggerAnimation.value,
+            ),
+            onTap: () {
+              toggleMenu();
+              handleAnimationTrigger();
             },
           ),
         ],

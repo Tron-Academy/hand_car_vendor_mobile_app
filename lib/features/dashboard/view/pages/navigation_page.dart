@@ -5,7 +5,7 @@ import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart
 
 import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
-import 'package:handcar_ventor/features/dashboard/view/widgets/drawer_widget.dart';
+import 'package:handcar_ventor/core/widgets/drawer_widget.dart';
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 class NavigationPage extends HookWidget {
