@@ -5,7 +5,7 @@ import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/card_home_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/recent_service_card_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/upcoming_service.dart';
-import 'package:handcar_ventor/features/profile/view/pages/notification_page.dart';
+import 'package:handcar_ventor/features/notifications/view/pages/notification_page.dart';
 
 class VendorDashboard extends HookWidget {
   static const route = '/vendor-dashboard';
