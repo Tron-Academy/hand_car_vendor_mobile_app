@@ -15,8 +15,11 @@ class LoginPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Controllers
     final phoneController = useTextEditingController();
+    // Password Controller  
     final passwordController = useTextEditingController();
+    // Visibility State
     final isVisible = useState(false);
 
     // Watch the authentication state
