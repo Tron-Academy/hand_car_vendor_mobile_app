@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:handcar_ventor/core/router/router.dart';
 import 'package:handcar_ventor/core/theme/dark_theme.dart';
 import 'package:handcar_ventor/core/theme/light_theme.dart';
-import 'package:handcar_ventor/features/dashboard/view/pages/navigation_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
@@ -13,12 +13,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const NavigationPage(),
+      routerConfig: router,
     );
   }
 }

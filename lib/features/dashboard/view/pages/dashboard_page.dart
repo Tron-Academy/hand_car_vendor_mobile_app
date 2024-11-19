@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/card_home_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/recent_service_card_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/upcoming_service.dart';
+import 'package:handcar_ventor/features/profile/view/pages/notification_page.dart';
 
 class VendorDashboard extends HookWidget {
   static const route = '/vendor-dashboard';
   const VendorDashboard({super.key});
 
   @override
-
   Widget build(BuildContext context) {
     // Using hooks to manage state
     final upcomingServices = useState([
@@ -74,7 +75,9 @@ class VendorDashboard extends HookWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
-            onPressed: () {},
+            onPressed: () {
+              context.push(NotificationPage.route);
+            },
           ),
           IconButton(
             icon: const Icon(Icons.settings),
