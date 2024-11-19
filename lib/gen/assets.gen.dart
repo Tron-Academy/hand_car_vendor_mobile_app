@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/hand_car_icon.svg
+  String get handCarIcon => 'assets/icons/hand_car_icon.svg';
+
   /// File path: assets/icons/hand_car_logo.png
   AssetGenImage get handCarLogo =>
       const AssetGenImage('assets/icons/hand_car_logo.png');
@@ -23,7 +26,8 @@ class $AssetsIconsGen {
   String get icTransaction => 'assets/icons/ic_transaction.svg';
 
   /// List of all assets
-  List<dynamic> get values => [handCarLogo, icService, icTransaction];
+  List<dynamic> get values =>
+      [handCarIcon, handCarLogo, icService, icTransaction];
 }
 
 class Assets {

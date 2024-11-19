@@ -67,18 +67,18 @@ class SubscriptionPage extends HookWidget {
         ],
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(context.space.space_200),
         itemCount: subscriptions.value.length,
         itemBuilder: (context, index) {
           final subscription = subscriptions.value[index];
           return Card(
-            margin: const EdgeInsets.only(bottom: 16),
+            margin: EdgeInsets.only(bottom: context.space.space_200),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(context.space.space_200),
             ),
             elevation: 4,
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(context.space.space_200),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -90,13 +90,10 @@ class SubscriptionPage extends HookWidget {
                       children: [
                         Text(
                           subscription['userName']!,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+                          style: context.typography.bodyMedium,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: context.space.space_100),
                         Text(
                           subscription['type']!,
                           style: TextStyle(
@@ -113,10 +110,14 @@ class SubscriptionPage extends HookWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Plan: ${subscription['servicePlan']}'),
-                        Text('Duration: ${subscription['duration']}'),
-                        Text('Start: ${subscription['startDate']}'),
-                        Text('End: ${subscription['endDate']}'),
+                        Text('Plan: ${subscription['servicePlan']}',
+                            style: context.typography.bodySmall),
+                        Text('Duration: ${subscription['duration']}',
+                            style: context.typography.bodySmall),
+                        Text('Start: ${subscription['startDate']}',
+                            style: context.typography.bodySmall),
+                        Text('End: ${subscription['endDate']}',
+                            style: context.typography.bodySmall),
                       ],
                     ),
                   ),
@@ -134,14 +135,15 @@ class SubscriptionPage extends HookWidget {
                             color: subscription['status'] == 'Active'
                                 ? Colors.green[50]
                                 : Colors.red[50],
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius:
+                                BorderRadius.circular(context.space.space_150),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                width: 8,
-                                height: 8,
+                                width: context.space.space_100,
+                                height: context.space.space_100,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: subscription['status'] == 'Active'
@@ -149,7 +151,7 @@ class SubscriptionPage extends HookWidget {
                                       : Colors.red,
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              SizedBox(width: context.space.space_25),
                               Flexible(
                                 child: Text(
                                   subscription['status']!,

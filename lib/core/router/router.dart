@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:handcar_ventor/features/auth/view/pages/login_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/navigation_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
@@ -9,7 +10,7 @@ import 'package:handcar_ventor/features/services/view/pages/add_service_page.dar
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 final router = GoRouter(
-  initialLocation: NavigationPage.route,
+  initialLocation: LoginPage.route,
   routes: [
     //Navigation Route
     GoRoute(path: NavigationPage.route, builder: (context, state) => const NavigationPage()),
@@ -27,6 +28,10 @@ final router = GoRouter(
     GoRoute(path: SubscriptionPage.route, builder: (context, state) => const SubscriptionPage()),
     //Notification Route
     GoRoute(path: NotificationPage.route, builder: (context, state) => const NotificationPage()),
+    //Login With Email And Password Route
+    GoRoute(path: LoginPage.route, builder: (context, state) => const LoginPage()),
+  
 
   ],
 );
+

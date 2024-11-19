@@ -32,6 +32,7 @@ class NavigationPage extends HookWidget {
         curve: Curves.easeInOut,
       );
     }
+    
 
     return Scaffold(
       backgroundColor:
@@ -44,10 +45,10 @@ class NavigationPage extends HookWidget {
           navBarIndex.value = value;
         },
         children: const [
-          ServiceRequestPage(),
-          VendorDashboard(),
-          ServicePage(),
-          SubscriptionPage(),
+          ServiceRequestPage(), //Service Request Page
+          VendorDashboard(), //Vendor Dashboard
+          ServicePage(), //Service Page
+          SubscriptionPage(), //Subscription Page
         ],
       ),
       bottomNavigationBar: ClipRRect(

@@ -25,7 +25,7 @@ class ServiceRequestCardWidget extends StatelessWidget {
         children: [
           Text(
             name,
-            style: context.typography.bodyLarge.copyWith(
+            style: context.typography.bodyMedium.copyWith(
               color: context.colors.primaryTxt,
             ),
           ),
@@ -35,7 +35,7 @@ class ServiceRequestCardWidget extends StatelessWidget {
             children: [
               Text(
                 phoneNumber,
-                style: context.typography.bodyLarge.copyWith(
+                style: context.typography.bodySemiBold.copyWith(
                   color: context.colors.secondaryTxt,
                 ),
               ),
@@ -54,7 +54,7 @@ class ServiceRequestCardWidget extends StatelessWidget {
               children: [
                 Text(
                   serviceType,
-                  style: context.typography.bodySemiBold.copyWith(
+                  style: context.typography.body.copyWith(
                     color: context.colors.primaryTxt,
                   ),
                 ),

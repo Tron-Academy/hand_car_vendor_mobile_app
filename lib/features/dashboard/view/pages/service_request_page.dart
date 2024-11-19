@@ -8,7 +8,7 @@ class ServiceRequestPage extends HookConsumerWidget {
   const ServiceRequestPage({super.key});
 
   @override
-  Widget build(BuildContext context,ref) {
+  Widget build(BuildContext context, ref) {
     List<UserData> users = [
       UserData(
           name: 'Tom Cruise',
@@ -79,11 +79,11 @@ class UserRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(userData.name),
+        title: Text(userData.name, style: context.typography.bodyMedium),
         subtitle: Column(
           children: [
-            Text(userData.service),
-            Text(userData.mobile),
+            Text(userData.service, style: context.typography.bodySmall),
+            Text(userData.mobile, style: context.typography.bodySmall),
           ],
         ),
         trailing: SizedBox(

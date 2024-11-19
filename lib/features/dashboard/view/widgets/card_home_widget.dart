@@ -9,7 +9,11 @@ class CardWidget extends StatelessWidget {
   final IconData icon;
 
   const CardWidget(
-      {super.key, required this.title, required this.value, required this.color, required this.icon});
+      {super.key,
+      required this.title,
+      required this.value,
+      required this.color,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class CardWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 32, color: color),
+            Icon(icon, size: context.space.space_400, color: color),
             SizedBox(height: context.space.space_100),
             Text(
               value,
@@ -29,11 +33,10 @@ class CardWidget extends StatelessWidget {
             SizedBox(height: context.space.space_100),
             Text(
               textAlign: TextAlign.center,
-
               title,
-                style: context.typography.bodySmall.copyWith(color: Colors.grey[600]),
-              ),
-            
+              style: context.typography.bodySmall
+                  .copyWith(color: Colors.grey[600]),
+            ),
           ],
         ),
       ),
