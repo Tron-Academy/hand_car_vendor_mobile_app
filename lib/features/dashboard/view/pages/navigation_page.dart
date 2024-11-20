@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
 
 import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
 import 'package:handcar_ventor/core/widgets/drawer_widget.dart';
+import 'package:handcar_ventor/features/notifications/view/pages/notification_page.dart';
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 class NavigationPage extends HookWidget {
@@ -32,11 +34,27 @@ class NavigationPage extends HookWidget {
         curve: Curves.easeInOut,
       );
     }
-    
 
     return Scaffold(
       backgroundColor:
           isDarkMode ? context.colors.background : context.colors.white,
+      appBar: AppBar(
+        title: navBarIndex.value == 0
+            ? Text('Service Requests', style: context.typography.h3)
+            : navBarIndex.value == 1
+                ? Text('Dashboard', style: context.typography.h3)
+                : navBarIndex.value == 2
+                    ? Text('Services', style: context.typography.h3)
+                    : Text('Subscriptions', style: context.typography.h3),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(NotificationPage.route);
+            },
+            icon: const Icon(Icons.notifications),
+          ),
+        ],
+      ),
       //Drawer Widget
       drawer: const DrawerWidget(),
       body: PageView(

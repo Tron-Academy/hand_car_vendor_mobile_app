@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/card_home_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/recent_service_card_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/widgets/upcoming_service.dart';
-import 'package:handcar_ventor/features/notifications/view/pages/notification_page.dart';
 
 class VendorDashboard extends HookWidget {
   static const route = '/vendor-dashboard';
@@ -69,22 +67,6 @@ class VendorDashboard extends HookWidget {
     // Callback hooks
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(' Dashboard', style: context.typography.h3),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              context.push(NotificationPage.route);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {},
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(context.space.space_200),
         child: Column(

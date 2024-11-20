@@ -28,8 +28,7 @@ class ServiceRequestPage extends HookConsumerWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Service Requests', style: context.typography.bodyLarge),
-          bottom: const TabBar(
+          title: const TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: Colors.black,
             labelColor: Colors.black,

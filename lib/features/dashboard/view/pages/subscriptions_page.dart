@@ -48,24 +48,6 @@ class SubscriptionPage extends HookWidget {
     ]);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Subscriptions'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // Implement search functionality
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {
-              // Implement filter functionality
-            },
-          ),
-        ],
-      ),
       body: ListView.builder(
         padding: EdgeInsets.all(context.space.space_200),
         itemCount: subscriptions.value.length,
