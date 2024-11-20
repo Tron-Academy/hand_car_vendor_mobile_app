@@ -17,13 +17,28 @@ class AddServiceScreen extends HookConsumerWidget {
   const AddServiceScreen({super.key});
 
   @override
+  /// Builds the UI for the AddServiceScreen.
+  ///
+  /// This widget includes:
+  /// - An image picker to select images related to the service.
+  /// - Text fields to input the service name, category, description, and price.
+  /// - A section to display selected images.
+  /// - Buttons to cancel the operation or save the service details.
+  ///
+  /// The [context] provides the location in the widget tree where this
+  /// widget is being built. The [ref] is used to access the provider for
+  /// image selection.
   Widget build(BuildContext context, ref) {
+    //Image Picker
     final image = ref.watch(imagePickerProviderProvider);
     final selectedImages = image.selectedImages;
+
+    //Controllers
     final nameController = useTextEditingController();
     final categoryController = useTextEditingController();
     final descriptionController = useTextEditingController();
     final priceController = useTextEditingController();
+    
     return Scaffold(
       backgroundColor: const Color(0xffF5F6F9),
       appBar: AppBar(
