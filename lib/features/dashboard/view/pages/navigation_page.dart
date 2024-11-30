@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
+import 'package:handcar_ventor/core/widgets/drawer_widget.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
-
 import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
-import 'package:handcar_ventor/core/widgets/drawer_widget.dart';
 import 'package:handcar_ventor/features/notifications/view/pages/notification_page.dart';
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
@@ -16,16 +15,12 @@ class NavigationPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Page Controller
     final pageController = usePageController(initialPage: 1);
-
-    //NavBar Index
     final navBarIndex = useState(1);
-
-    //Dark Mode
+    final searchController = useTextEditingController();
+    final isSearching = useState(false);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    //On Tap Function for NavBar
     void onTap(int index) {
       navBarIndex.value = index;
       pageController.animateToPage(
@@ -35,18 +30,76 @@ class NavigationPage extends HookWidget {
       );
     }
 
+    // Create the search bar widget
+    Widget buildSearchBar() {
+      return TextField(
+        controller: searchController,
+        style: TextStyle(
+          color: isDarkMode ? Colors.white : Colors.black,
+        ),
+        decoration: InputDecoration(
+          hintText: navBarIndex.value == 2
+              ? 'Search services...'
+              : 'Search subscriptions...',
+          hintStyle: TextStyle(
+            color: isDarkMode ? Colors.white70 : Colors.black54,
+          ),
+          border: InputBorder.none,
+          prefixIcon: Icon(
+            Icons.search,
+            color: isDarkMode ? Colors.white70 : Colors.black54,
+          ),
+          suffixIcon: searchController.text.isNotEmpty
+              ? IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: isDarkMode ? Colors.white70 : Colors.black54,
+                  ),
+                  onPressed: () {
+                    searchController.clear();
+                    // Add your search clear logic here
+                  },
+                )
+              : null,
+        ),
+        onChanged: (value) {
+          // Add your search logic here
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor:
           isDarkMode ? context.colors.background : context.colors.white,
       appBar: AppBar(
-        title: navBarIndex.value == 0
-            ? Text('Service Requests', style: context.typography.h3)
-            : navBarIndex.value == 1
-                ? Text('Dashboard', style: context.typography.h3)
-                : navBarIndex.value == 2
-                    ? Text('Services', style: context.typography.h3)
-                    : Text('Subscriptions', style: context.typography.h3),
+        centerTitle: true,
+        title: (navBarIndex.value == 2 || navBarIndex.value == 3) &&
+                isSearching.value
+            ? buildSearchBar()
+            : Text(
+                navBarIndex.value == 0
+                    ? 'Service Requests'
+                    : navBarIndex.value == 1
+                        ? 'Dashboard'
+                        : navBarIndex.value == 2
+                            ? 'Services'
+                            : 'Subscriptions',
+                style: context.typography.h3,
+              ),
         actions: [
+          if (navBarIndex.value == 2 || navBarIndex.value == 3)
+            IconButton(
+              onPressed: () {
+                isSearching.value = !isSearching.value;
+                if (!isSearching.value) {
+                  searchController.clear();
+                  // Add your search clear logic here
+                }
+              },
+              icon: Icon(isSearching.value ? Icons.close : Icons.search),
+            )
+          else
+            const Icon(Icons.search),
           IconButton(
             onPressed: () {
               context.push(NotificationPage.route);
@@ -55,18 +108,19 @@ class NavigationPage extends HookWidget {
           ),
         ],
       ),
-      //Drawer Widget
       drawer: const DrawerWidget(),
       body: PageView(
         controller: pageController,
         onPageChanged: (value) {
           navBarIndex.value = value;
+          isSearching.value = false; // Reset search state when page changes
+          searchController.clear(); // Clear search when page changes
         },
         children: const [
-          ServiceRequestPage(), //Service Request Page
-          VendorDashboard(), //Vendor Dashboard
-          ServicePage(), //Service Page
-          SubscriptionPage(), //Subscription Page
+          ServiceRequestPage(),
+          VendorDashboard(),
+          ServicePage(),
+          SubscriptionPage(),
         ],
       ),
       bottomNavigationBar: ClipRRect(
