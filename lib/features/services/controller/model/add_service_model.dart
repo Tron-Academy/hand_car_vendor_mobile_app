@@ -5,6 +5,7 @@ part 'add_service_model.g.dart';
 // Required for JSON serialization/deserialization
 
 @freezed
+//Add service Model
 class AddServiceModel with _$AddServiceModel {
   const factory AddServiceModel({
     required String id,
