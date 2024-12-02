@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:handcar_ventor/core/service/base_url.dart';
+import 'package:handcar_ventor/features/subscriptions/controller/model/subscriptions_model.dart';
 
 class SubscriptionsApiService {
 
@@ -12,7 +13,7 @@ class SubscriptionsApiService {
       )
   );
 
-  Future<List<dynamic>> getSubscriptions() async {
+  Future<SubscriptionsModel> getSubscriptions() async {
     try {
       final response = await _dio.get('/subscriptions');
       return response.data;
