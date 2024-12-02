@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:handcar_ventor/core/service/base_url.dart';
+import 'package:handcar_ventor/features/profile/controller/model/profile_model.dart';
 
 class ProfileApiServices {
   static final Dio _dio = Dio(BaseOptions(
@@ -7,7 +8,7 @@ class ProfileApiServices {
     receiveDataWhenStatusError: true,
   ));
 
-  static Future<Map<String, dynamic>> getProfile() async {
+  static Future<ProfileModel> getProfile() async {
     try {
       final response = await _dio.get('/profile');
       return response.data;
