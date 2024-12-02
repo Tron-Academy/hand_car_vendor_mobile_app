@@ -9,8 +9,10 @@ class SubscriptionController extends _$SubscriptionController {
   @override
   Future<SubscriptionsModel> build() async {
     final response = await SubscriptionsApiService().getSubscriptions();
-    return response as SubscriptionsModel;
+    return response;
   }
+  
+  //get All Subscriptions
 
   Future<void> getSubscriptions() async {
     try {
