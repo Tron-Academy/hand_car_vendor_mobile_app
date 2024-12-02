@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_service_model.dart';
+part of 'service_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AddServiceModel _$AddServiceModelFromJson(Map<String, dynamic> json) {
-  return _AddServiceModel.fromJson(json);
+ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) {
+  return _ServiceModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AddServiceModel {
+mixin _$ServiceModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
@@ -27,21 +27,21 @@ mixin _$AddServiceModel {
   double get price => throw _privateConstructorUsedError;
   List<String> get imageUrls => throw _privateConstructorUsedError;
 
-  /// Serializes this AddServiceModel to a JSON map.
+  /// Serializes this ServiceModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AddServiceModel
+  /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AddServiceModelCopyWith<AddServiceModel> get copyWith =>
+  $ServiceModelCopyWith<ServiceModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddServiceModelCopyWith<$Res> {
-  factory $AddServiceModelCopyWith(
-          AddServiceModel value, $Res Function(AddServiceModel) then) =
-      _$AddServiceModelCopyWithImpl<$Res, AddServiceModel>;
+abstract class $ServiceModelCopyWith<$Res> {
+  factory $ServiceModelCopyWith(
+          ServiceModel value, $Res Function(ServiceModel) then) =
+      _$ServiceModelCopyWithImpl<$Res, ServiceModel>;
   @useResult
   $Res call(
       {String id,
@@ -53,16 +53,16 @@ abstract class $AddServiceModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AddServiceModelCopyWithImpl<$Res, $Val extends AddServiceModel>
-    implements $AddServiceModelCopyWith<$Res> {
-  _$AddServiceModelCopyWithImpl(this._value, this._then);
+class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
+    implements $ServiceModelCopyWith<$Res> {
+  _$ServiceModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AddServiceModel
+  /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -104,11 +104,11 @@ class _$AddServiceModelCopyWithImpl<$Res, $Val extends AddServiceModel>
 }
 
 /// @nodoc
-abstract class _$$AddServiceModelImplCopyWith<$Res>
-    implements $AddServiceModelCopyWith<$Res> {
-  factory _$$AddServiceModelImplCopyWith(_$AddServiceModelImpl value,
-          $Res Function(_$AddServiceModelImpl) then) =
-      __$$AddServiceModelImplCopyWithImpl<$Res>;
+abstract class _$$ServiceModelImplCopyWith<$Res>
+    implements $ServiceModelCopyWith<$Res> {
+  factory _$$ServiceModelImplCopyWith(
+          _$ServiceModelImpl value, $Res Function(_$ServiceModelImpl) then) =
+      __$$ServiceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -121,14 +121,14 @@ abstract class _$$AddServiceModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AddServiceModelImplCopyWithImpl<$Res>
-    extends _$AddServiceModelCopyWithImpl<$Res, _$AddServiceModelImpl>
-    implements _$$AddServiceModelImplCopyWith<$Res> {
-  __$$AddServiceModelImplCopyWithImpl(
-      _$AddServiceModelImpl _value, $Res Function(_$AddServiceModelImpl) _then)
+class __$$ServiceModelImplCopyWithImpl<$Res>
+    extends _$ServiceModelCopyWithImpl<$Res, _$ServiceModelImpl>
+    implements _$$ServiceModelImplCopyWith<$Res> {
+  __$$ServiceModelImplCopyWithImpl(
+      _$ServiceModelImpl _value, $Res Function(_$ServiceModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddServiceModel
+  /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -140,7 +140,7 @@ class __$$AddServiceModelImplCopyWithImpl<$Res>
     Object? price = null,
     Object? imageUrls = null,
   }) {
-    return _then(_$AddServiceModelImpl(
+    return _then(_$ServiceModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -171,8 +171,8 @@ class __$$AddServiceModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AddServiceModelImpl implements _AddServiceModel {
-  const _$AddServiceModelImpl(
+class _$ServiceModelImpl implements _ServiceModel {
+  const _$ServiceModelImpl(
       {required this.id,
       required this.name,
       required this.category,
@@ -181,8 +181,8 @@ class _$AddServiceModelImpl implements _AddServiceModel {
       required final List<String> imageUrls})
       : _imageUrls = imageUrls;
 
-  factory _$AddServiceModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AddServiceModelImplFromJson(json);
+  factory _$ServiceModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServiceModelImplFromJson(json);
 
   @override
   final String id;
@@ -204,14 +204,14 @@ class _$AddServiceModelImpl implements _AddServiceModel {
 
   @override
   String toString() {
-    return 'AddServiceModel(id: $id, name: $name, category: $category, description: $description, price: $price, imageUrls: $imageUrls)';
+    return 'ServiceModel(id: $id, name: $name, category: $category, description: $description, price: $price, imageUrls: $imageUrls)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddServiceModelImpl &&
+            other is _$ServiceModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.category, category) ||
@@ -228,34 +228,33 @@ class _$AddServiceModelImpl implements _AddServiceModel {
   int get hashCode => Object.hash(runtimeType, id, name, category, description,
       price, const DeepCollectionEquality().hash(_imageUrls));
 
-  /// Create a copy of AddServiceModel
+  /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddServiceModelImplCopyWith<_$AddServiceModelImpl> get copyWith =>
-      __$$AddServiceModelImplCopyWithImpl<_$AddServiceModelImpl>(
-          this, _$identity);
+  _$$ServiceModelImplCopyWith<_$ServiceModelImpl> get copyWith =>
+      __$$ServiceModelImplCopyWithImpl<_$ServiceModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AddServiceModelImplToJson(
+    return _$$ServiceModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _AddServiceModel implements AddServiceModel {
-  const factory _AddServiceModel(
+abstract class _ServiceModel implements ServiceModel {
+  const factory _ServiceModel(
       {required final String id,
       required final String name,
       required final String category,
       required final String description,
       required final double price,
-      required final List<String> imageUrls}) = _$AddServiceModelImpl;
+      required final List<String> imageUrls}) = _$ServiceModelImpl;
 
-  factory _AddServiceModel.fromJson(Map<String, dynamic> json) =
-      _$AddServiceModelImpl.fromJson;
+  factory _ServiceModel.fromJson(Map<String, dynamic> json) =
+      _$ServiceModelImpl.fromJson;
 
   @override
   String get id;
@@ -270,10 +269,10 @@ abstract class _AddServiceModel implements AddServiceModel {
   @override
   List<String> get imageUrls;
 
-  /// Create a copy of AddServiceModel
+  /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddServiceModelImplCopyWith<_$AddServiceModelImpl> get copyWith =>
+  _$$ServiceModelImplCopyWith<_$ServiceModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:handcar_ventor/features/services/controller/model/add_service_model.dart';
+import 'package:handcar_ventor/features/services/controller/model/service_model.dart';
 
 class ServicesApiServices {
   static final Dio dio = Dio(
@@ -8,10 +8,10 @@ class ServicesApiServices {
     ),
   );
 
-  Future<List<AddServiceModel>>getService()async{
+  Future<List<ServiceModel>>getService()async{
    try{
      final response = await dio.get('/posts');
-     return (response.data as List).map((e) => AddServiceModel.fromJson(e)).toList();
+     return (response.data as List).map((e) => ServiceModel.fromJson(e)).toList();
    }catch(e){
      throw Exception(e);
    }

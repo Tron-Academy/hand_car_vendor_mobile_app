@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'add_service_model.dart';
+part of 'service_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AddServiceModelImpl _$$AddServiceModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AddServiceModelImpl(
+_$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
+    _$ServiceModelImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       category: json['category'] as String,
@@ -18,8 +17,7 @@ _$AddServiceModelImpl _$$AddServiceModelImplFromJson(
           (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$AddServiceModelImplToJson(
-        _$AddServiceModelImpl instance) =>
+Map<String, dynamic> _$$ServiceModelImplToJson(_$ServiceModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
