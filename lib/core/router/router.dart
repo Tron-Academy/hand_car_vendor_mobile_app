@@ -3,7 +3,7 @@ import 'package:handcar_ventor/features/auth/view/pages/login_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/dashboard_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/navigation_page.dart';
 import 'package:handcar_ventor/features/dashboard/view/pages/service_request_page.dart';
-import 'package:handcar_ventor/features/dashboard/view/pages/subscriptions_page.dart';
+import 'package:handcar_ventor/features/subscriptions/view/pages/subscriptions_page.dart';
 import 'package:handcar_ventor/features/profile/view/pages/edit_profile_page.dart';
 import 'package:handcar_ventor/features/notifications/view/pages/notification_page.dart';
 import 'package:handcar_ventor/features/services/view/pages/add_service_page.dart';
