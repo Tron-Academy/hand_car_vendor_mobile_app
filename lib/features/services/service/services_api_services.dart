@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:handcar_ventor/core/service/base_url.dart';
 import 'package:handcar_ventor/features/services/controller/model/service_model.dart';
+import 'package:handcar_ventor/features/services/controller/model/service_request_model.dart';
 
 class ServicesApiServices {
   static final Dio dio = Dio(
@@ -53,6 +54,15 @@ class ServicesApiServices {
   Future<void>deleteService({required id})async{
    try{
      await dio.delete('/posts/$id');
+   }catch(e){
+     throw Exception(e);
+   }
+  }
+  // get services request from user
+ static Future<ServiceRequestModel>getServiceRequest({required int id})async{
+   try{
+     final response = await dio.get('/posts/$id');
+     return ServiceRequestModel.fromJson(response.data);
    }catch(e){
      throw Exception(e);
    }

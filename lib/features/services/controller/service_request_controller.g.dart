@@ -1,26 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_controller.dart';
+part of 'service_request_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileControllerHash() => r'92ca8a2175696fe786cfa48ed8299c45c87525fd';
+String _$serviceRequestControllerHash() =>
+    r'aac51459c053b5179fac5d8b8f1502c7ba0a3499';
 
-/// See also [ProfileController].
-@ProviderFor(ProfileController)
-final profileControllerProvider =
-    AutoDisposeAsyncNotifierProvider<ProfileController, ProfileModel>.internal(
-  ProfileController.new,
-  name: r'profileControllerProvider',
+/// See also [ServiceRequestController].
+@ProviderFor(ServiceRequestController)
+final serviceRequestControllerProvider = AutoDisposeAsyncNotifierProvider<
+    ServiceRequestController, ServiceRequestModel>.internal(
+  ServiceRequestController.new,
+  name: r'serviceRequestControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$profileControllerHash,
+      : _$serviceRequestControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ProfileController = AutoDisposeAsyncNotifier<ProfileModel>;
+typedef _$ServiceRequestController
+    = AutoDisposeAsyncNotifier<ServiceRequestModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
