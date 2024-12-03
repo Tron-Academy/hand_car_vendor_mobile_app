@@ -19,6 +19,7 @@ class ServicesApiServices {
      throw Exception(e);
    }
   }
+  // add service
   Future<ServiceModel>addService({required name,required category,required description,required price,required imageUrls})async{
    try{
      final response = await dio.post('/posts',data: FormData.fromMap({
@@ -34,6 +35,7 @@ class ServicesApiServices {
    }
 
   }
+  // update service
   Future<ServiceModel>updateService({required id,required name,required category,required description,required price,required imageUrls})async{
    try{
      final response = await dio.put('/posts/$id',data: FormData.fromMap({

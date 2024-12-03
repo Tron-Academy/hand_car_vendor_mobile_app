@@ -99,7 +99,7 @@ class NavigationPage extends HookWidget {
               icon: Icon(isSearching.value ? Icons.close : Icons.search),
             )
           else
-            const Icon(Icons.search),
+            const SizedBox(),
           IconButton(
             onPressed: () {
               context.push(NotificationPage.route);
