@@ -2,10 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'service_model.freezed.dart';
 part 'service_model.g.dart';
-// Required for JSON serialization/deserialization
+
 
 @freezed
-//Add service Model
+//service Model
 class ServiceModel with _$ServiceModel {
   const factory ServiceModel({
     required String id,

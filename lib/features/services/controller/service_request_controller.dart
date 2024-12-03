@@ -6,6 +6,7 @@ part 'service_request_controller.g.dart';
 
 @riverpod
 class ServiceRequestController extends _$ServiceRequestController {
+  @override
   Future<ServiceRequestModel> build() async {
     final response = await ServicesApiServices.getServiceRequest(id: 1);
     return response;

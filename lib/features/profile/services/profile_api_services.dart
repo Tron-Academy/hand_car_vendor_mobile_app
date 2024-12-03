@@ -8,6 +8,7 @@ class ProfileApiServices {
     receiveDataWhenStatusError: true,
   ));
 
+// get profile
   static Future<ProfileModel> getProfile() async {
     try {
       final response = await _dio.get('/profile');
@@ -16,6 +17,7 @@ class ProfileApiServices {
       throw Exception(e);
     }
   }
+  // update profile
   static Future<Map<String, dynamic>> updateProfile({required String name,required String email,required String phone,required String whatsapp,required String password,required String location}) async {
     try {
       final response = await _dio.put('/profile', data: {
