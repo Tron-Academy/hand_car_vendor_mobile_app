@@ -15,10 +15,15 @@ class NavigationPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // PageController for navigation
     final pageController = usePageController(initialPage: 1);
+    // Index for navigation
     final navBarIndex = useState(1);
+    // Search controller
     final searchController = useTextEditingController();
+    // Search state
     final isSearching = useState(false);
+    // Dark mode
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     void onTap(int index) {
