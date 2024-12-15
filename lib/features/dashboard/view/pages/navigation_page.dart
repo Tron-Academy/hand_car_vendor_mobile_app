@@ -92,6 +92,7 @@ class NavigationPage extends HookWidget {
                 style: context.typography.h3,
               ),
         actions: [
+          //Navigation
           if (navBarIndex.value == 2 || navBarIndex.value == 3)
             IconButton(
               onPressed: () {
@@ -101,12 +102,14 @@ class NavigationPage extends HookWidget {
                   // Add your search clear logic here
                 }
               },
+              // Change the icon based on the search state
               icon: Icon(isSearching.value ? Icons.close : Icons.search),
             )
           else
             const SizedBox(),
           IconButton(
             onPressed: () {
+              // Navigate to the notification page
               context.push(NotificationPage.route);
             },
             icon: const Icon(Icons.notifications),
