@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:handcar_ventor/core/service/base_url.dart';
-import 'package:handcar_ventor/features/services/controller/model/service_model.dart';
-import 'package:handcar_ventor/features/services/controller/model/service_request_model.dart';
+import 'package:handcar_ventor/features/services/model/service_model.dart';
+import 'package:handcar_ventor/features/services/model/service_request_model.dart';
 
 class ServicesApiServices {
   static final Dio dio = Dio(
@@ -38,11 +38,11 @@ class ServicesApiServices {
   Future<ServiceModel>updateService({required id,required name,required category,required description,required price,required imageUrls})async{
    try{
      final response = await dio.put('/posts/$id',data: FormData.fromMap({
-       'name':name,
-       'category':category,
-       'description':description,
-       'price':price,
-       'imageUrls':imageUrls
+       'serviceName':name,
+       'serviceCategory':category,
+       'serviceDetails':description,
+       'rate':price,
+       'imageUrl':imageUrls
      }));
      return ServiceModel.fromJson(response.data);
    }catch(e){
