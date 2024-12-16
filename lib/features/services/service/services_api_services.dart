@@ -20,20 +20,19 @@ class ServicesApiServices {
    }
   }
   // add service
-  Future<ServiceModel>addService({required name,required category,required description,required price,required imageUrls})async{
+   static Future<ServiceModel>addService({required serviceName,required serviceCategory,required serviceDetails,required rate,required imageUrl})async{
    try{
      final response = await dio.post('/posts',data: FormData.fromMap({
-       'name':name,
-       'category':category,
-       'description':description,
-       'price':price,
-       'imageUrls':imageUrls
+       'serviceName':serviceName,
+       'serviceCategory':serviceCategory,
+       'serviceDetails':serviceDetails,
+       'rate':rate,
+       'imageUrl':imageUrl
      }));
      return ServiceModel.fromJson(response.data);
    }catch(e){
      throw Exception(e);
    }
-
   }
   // update service
   Future<ServiceModel>updateService({required id,required name,required category,required description,required price,required imageUrls})async{
@@ -68,6 +67,8 @@ class ServicesApiServices {
    }catch(e){
      throw Exception(e);
    }
+
+   
   }
 
 }

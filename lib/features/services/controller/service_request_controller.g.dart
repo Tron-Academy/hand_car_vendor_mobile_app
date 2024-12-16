@@ -7,7 +7,7 @@ part of 'service_request_controller.dart';
 // **************************************************************************
 
 String _$serviceRequestControllerHash() =>
-    r'aac51459c053b5179fac5d8b8f1502c7ba0a3499';
+    r'0a2bbfd1ca7857cb007d33e62277f656a571ea3f';
 
 /// See also [ServiceRequestController].
 @ProviderFor(ServiceRequestController)

@@ -5,17 +5,16 @@ part 'service_model.g.dart';
 
 
 @freezed
-//service Model
 class ServiceModel with _$ServiceModel {
   const factory ServiceModel({
-    required String id,
-    required String name,
-    required String category,
-    required String description,
-    required double price,
-    required List<String> imageUrls,
+    int? id,
+    required String serviceName,
+    required String serviceCategory,
+    required String serviceDetails,
+    required double rate,
+    String? imageUrl,
   }) = _ServiceModel;
 
-  factory ServiceModel.fromJson(Map<String, dynamic> json) =>
-      _$ServiceModelFromJson(json); // This function is auto-generated
+  factory ServiceModel.fromJson(Map<String, Object?> json) 
+      => _$ServiceModelFromJson(json);
 }

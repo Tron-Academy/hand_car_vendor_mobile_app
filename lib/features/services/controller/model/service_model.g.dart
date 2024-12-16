@@ -8,21 +8,20 @@ part of 'service_model.dart';
 
 _$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
     _$ServiceModelImpl(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      category: json['category'] as String,
-      description: json['description'] as String,
-      price: (json['price'] as num).toDouble(),
-      imageUrls:
-          (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
+      id: (json['id'] as num?)?.toInt(),
+      serviceName: json['serviceName'] as String,
+      serviceCategory: json['serviceCategory'] as String,
+      serviceDetails: json['serviceDetails'] as String,
+      rate: (json['rate'] as num).toDouble(),
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$$ServiceModelImplToJson(_$ServiceModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'category': instance.category,
-      'description': instance.description,
-      'price': instance.price,
-      'imageUrls': instance.imageUrls,
+      'serviceName': instance.serviceName,
+      'serviceCategory': instance.serviceCategory,
+      'serviceDetails': instance.serviceDetails,
+      'rate': instance.rate,
+      'imageUrl': instance.imageUrl,
     };

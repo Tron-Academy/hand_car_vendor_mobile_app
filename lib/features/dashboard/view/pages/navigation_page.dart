@@ -25,7 +25,7 @@ class NavigationPage extends HookWidget {
     final isSearching = useState(false);
     // Dark mode
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
+     // Function to handle navigation
     void onTap(int index) {
       navBarIndex.value = index;
       pageController.animateToPage(
@@ -62,13 +62,13 @@ class NavigationPage extends HookWidget {
                   ),
                   onPressed: () {
                     searchController.clear();
-                    // Add your search clear logic here
+                    
                   },
                 )
               : null,
         ),
         onChanged: (value) {
-          // Add your search logic here
+       
         },
       );
     }

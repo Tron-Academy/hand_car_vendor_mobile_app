@@ -20,12 +20,12 @@ ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ServiceModel {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
-  List<String> get imageUrls => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String get serviceName => throw _privateConstructorUsedError;
+  String get serviceCategory => throw _privateConstructorUsedError;
+  String get serviceDetails => throw _privateConstructorUsedError;
+  double get rate => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   /// Serializes this ServiceModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,12 +44,12 @@ abstract class $ServiceModelCopyWith<$Res> {
       _$ServiceModelCopyWithImpl<$Res, ServiceModel>;
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String category,
-      String description,
-      double price,
-      List<String> imageUrls});
+      {int? id,
+      String serviceName,
+      String serviceCategory,
+      String serviceDetails,
+      double rate,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -67,38 +67,38 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? category = null,
-    Object? description = null,
-    Object? price = null,
-    Object? imageUrls = null,
+    Object? id = freezed,
+    Object? serviceName = null,
+    Object? serviceCategory = null,
+    Object? serviceDetails = null,
+    Object? rate = null,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serviceName: null == serviceName
+          ? _value.serviceName
+          : serviceName // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      serviceCategory: null == serviceCategory
+          ? _value.serviceCategory
+          : serviceCategory // ignore: cast_nullable_to_non_nullable
               as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      serviceDetails: null == serviceDetails
+          ? _value.serviceDetails
+          : serviceDetails // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
               as double,
-      imageUrls: null == imageUrls
-          ? _value.imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -112,12 +112,12 @@ abstract class _$$ServiceModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String category,
-      String description,
-      double price,
-      List<String> imageUrls});
+      {int? id,
+      String serviceName,
+      String serviceCategory,
+      String serviceDetails,
+      double rate,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -133,38 +133,38 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? category = null,
-    Object? description = null,
-    Object? price = null,
-    Object? imageUrls = null,
+    Object? id = freezed,
+    Object? serviceName = null,
+    Object? serviceCategory = null,
+    Object? serviceDetails = null,
+    Object? rate = null,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$ServiceModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serviceName: null == serviceName
+          ? _value.serviceName
+          : serviceName // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      serviceCategory: null == serviceCategory
+          ? _value.serviceCategory
+          : serviceCategory // ignore: cast_nullable_to_non_nullable
               as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      serviceDetails: null == serviceDetails
+          ? _value.serviceDetails
+          : serviceDetails // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
               as double,
-      imageUrls: null == imageUrls
-          ? _value._imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -173,38 +173,32 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServiceModelImpl implements _ServiceModel {
   const _$ServiceModelImpl(
-      {required this.id,
-      required this.name,
-      required this.category,
-      required this.description,
-      required this.price,
-      required final List<String> imageUrls})
-      : _imageUrls = imageUrls;
+      {this.id,
+      required this.serviceName,
+      required this.serviceCategory,
+      required this.serviceDetails,
+      required this.rate,
+      this.imageUrl});
 
   factory _$ServiceModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServiceModelImplFromJson(json);
 
   @override
-  final String id;
+  final int? id;
   @override
-  final String name;
+  final String serviceName;
   @override
-  final String category;
+  final String serviceCategory;
   @override
-  final String description;
+  final String serviceDetails;
   @override
-  final double price;
-  final List<String> _imageUrls;
+  final double rate;
   @override
-  List<String> get imageUrls {
-    if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_imageUrls);
-  }
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'ServiceModel(id: $id, name: $name, category: $category, description: $description, price: $price, imageUrls: $imageUrls)';
+    return 'ServiceModel(id: $id, serviceName: $serviceName, serviceCategory: $serviceCategory, serviceDetails: $serviceDetails, rate: $rate, imageUrl: $imageUrl)';
   }
 
   @override
@@ -213,20 +207,21 @@ class _$ServiceModelImpl implements _ServiceModel {
         (other.runtimeType == runtimeType &&
             other is _$ServiceModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.price, price) || other.price == price) &&
-            const DeepCollectionEquality()
-                .equals(other._imageUrls, _imageUrls));
+            (identical(other.serviceName, serviceName) ||
+                other.serviceName == serviceName) &&
+            (identical(other.serviceCategory, serviceCategory) ||
+                other.serviceCategory == serviceCategory) &&
+            (identical(other.serviceDetails, serviceDetails) ||
+                other.serviceDetails == serviceDetails) &&
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, category, description,
-      price, const DeepCollectionEquality().hash(_imageUrls));
+  int get hashCode => Object.hash(runtimeType, id, serviceName, serviceCategory,
+      serviceDetails, rate, imageUrl);
 
   /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.
@@ -246,28 +241,28 @@ class _$ServiceModelImpl implements _ServiceModel {
 
 abstract class _ServiceModel implements ServiceModel {
   const factory _ServiceModel(
-      {required final String id,
-      required final String name,
-      required final String category,
-      required final String description,
-      required final double price,
-      required final List<String> imageUrls}) = _$ServiceModelImpl;
+      {final int? id,
+      required final String serviceName,
+      required final String serviceCategory,
+      required final String serviceDetails,
+      required final double rate,
+      final String? imageUrl}) = _$ServiceModelImpl;
 
   factory _ServiceModel.fromJson(Map<String, dynamic> json) =
       _$ServiceModelImpl.fromJson;
 
   @override
-  String get id;
+  int? get id;
   @override
-  String get name;
+  String get serviceName;
   @override
-  String get category;
+  String get serviceCategory;
   @override
-  String get description;
+  String get serviceDetails;
   @override
-  double get price;
+  double get rate;
   @override
-  List<String> get imageUrls;
+  String? get imageUrl;
 
   /// Create a copy of ServiceModel
   /// with the given fields replaced by the non-null parameter values.

@@ -29,12 +29,8 @@ class ServiceController extends _$ServiceController {
       required price,
       required imageUrls}) async {
     try {
-      final response = await ServicesApiServices().addService(
-          name: name,
-          category: category,
-          description: description,
-          price: price,
-          imageUrls: imageUrls);
+      final response = await ServicesApiServices.addService(
+          serviceName: name, serviceCategory: category, serviceDetails: description, rate: price, imageUrl: imageUrls);
       return response;
     } catch (e) {
       throw Exception(e);
