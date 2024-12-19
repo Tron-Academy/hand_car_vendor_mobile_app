@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:handcar_ventor/features/services/model/service_model.dart';
 import 'package:handcar_ventor/features/services/service/services_api_services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -23,18 +25,26 @@ class ServiceController extends _$ServiceController {
   }
 
   //add service
-  Future<ServiceModel> addService(
-      {required name,
-      required category,
-      required description,
-      required price,
-      required imageUrls}) async {
+  Future<void> addService({
+    required String serviceName,
+    required String serviceCategory,
+    required String serviceDetails,
+    required double rate,
+    required File image,
+  }) async {
+    state = const AsyncValue.loading();
     try {
-      final response = await ServicesApiServices.addService(
-          serviceName: name, serviceCategory: category, serviceDetails: description, rate: price, imageUrl: imageUrls);
-      return response;
+      final service = await ServicesApiServices().addService(
+        serviceName: serviceName,
+        serviceCategory: serviceCategory,
+        serviceDetails: serviceDetails,
+        rate: rate,
+        image: image,
+      );
+
+      state = AsyncValue.data(service);
     } catch (e) {
-      throw Exception(e);
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 
