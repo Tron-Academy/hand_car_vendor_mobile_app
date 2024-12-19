@@ -8,6 +8,7 @@ part 'service_controller.g.dart';
 class ServiceController extends _$ServiceController {
   @override
   Future<ServiceModel> build() async {
+    //get services
     final response = await ServicesApiServices().getService();
     return response as ServiceModel;
   }
