@@ -1,7 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
+import 'package:handcar_ventor/core/service/base_url.dart';
 import 'package:handcar_ventor/core/utils/image_picker_provider.dart';
 import 'package:handcar_ventor/core/widgets/button_widget.dart';
 import 'package:handcar_ventor/core/widgets/outline_button_widget.dart';
@@ -21,7 +24,7 @@ class AddServiceScreen extends HookConsumerWidget {
     // Image Picker
     final image = ref.watch(imagePickerProviderProvider);
     final selectedImages = image.selectedImages;
-    
+
     // Controllers
     final nameController = useTextEditingController();
     final categoryController = useTextEditingController();
@@ -29,45 +32,61 @@ class AddServiceScreen extends HookConsumerWidget {
     final priceController = useTextEditingController();
 
     // Listen to service state changes
-    ref.listen<AsyncValue>(
-      serviceControllerProvider,
-      (previous, current) {
-        current.whenOrNull(
-          data: (_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Service added successfully')),
-            );
-            Navigator.pop(context);
-          },
-          error: (error, stack) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(error.toString())),
-            );
-          },
-        );
-      },
-    );
+    // ref.listen<AsyncValue>(
+    //   serviceControllerProvider,
+    //   (previous, current) {
+    //     current.whenOrNull(
+    //       data: (_) {
+    //         ScaffoldMessenger.of(context).showSnackBar(
+    //           const SnackBar(content: Text('Service added successfully')),
+    //         );
+    //         Navigator.pop(context);
+    //       },
+    //       error: (error, stack) {
+    //         log(error.toString());
+    //         ScaffoldMessenger.of(context).showSnackBar(
+    //           SnackBar(content: Text(error.toString())),
+    //         );
+    //       },
+    //     );
+    //   },
+    // );
 
     // Watch service state for loading
     final serviceState = ref.watch(serviceControllerProvider);
 
     void handleSave() {
+      log('Backend URL: $baseUrl');
+
+      // Validate inputs
       if (selectedImages.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Please select an image')),
         );
         return;
       }
+      if (nameController.text.isEmpty ||
+          categoryController.text.isEmpty ||
+          descriptionController.text.isEmpty ||
+          priceController.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('All fields are required')),
+        );
+        return;
+      }
 
+      // Parse price
       final price = double.tryParse(priceController.text) ?? 0.0;
 
+      // Submit form
       ref.read(serviceControllerProvider.notifier).addService(
-            serviceName: nameController.text,
-            serviceCategory: categoryController.text,
-            serviceDetails: descriptionController.text,
-            rate: price,
+            name: nameController.text,
+            category: categoryController.text,
+            description: descriptionController.text,
+            price: price,
             image: File(selectedImages.first.path),
           );
+      context.pop();
     }
 
     return Scaffold(
@@ -160,7 +179,10 @@ class AddServiceScreen extends HookConsumerWidget {
                       ),
                       ButtonWidget(
                         label: 'Save',
-                        onTap: handleSave,
+                        onTap: () {
+                          handleSave();
+                        },
+                        isLoading: serviceState.isLoading,
                       ),
                     ],
                   ),

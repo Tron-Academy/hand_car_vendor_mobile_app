@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:handcar_ventor/features/services/model/service_model.dart';
@@ -9,73 +10,92 @@ part 'service_controller.g.dart';
 @riverpod
 class ServiceController extends _$ServiceController {
   @override
-  Future<ServiceModel> build() async {
-    //get services
+  FutureOr<ServiceModel?> build() async {
+    return null; // Default null value
+  }
+
+  // Get all services
+ Future<void> getServices() async {
+  try {
+    state = const AsyncValue.loading();
     final response = await ServicesApiServices().getService();
-    return response as ServiceModel;
+  state = AsyncValue<List<ServiceModel>>.data(response) as AsyncValue<ServiceModel?>;
+  } catch (error, stackTrace) {
+    log('Error fetching services: $error', error: error, );
+    state = AsyncValue.error(error, stackTrace);
+  } finally {
+    // Notify UI about the end of loading state (optional)
   }
+}
 
-  //get services
-  Future<void> getServices() async {
-    try {
-      await ServicesApiServices().getService();
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  //add service
+  // Add a new service
   Future<void> addService({
-    required String serviceName,
-    required String serviceCategory,
-    required String serviceDetails,
-    required double rate,
+    required String name,
+    required String category,
+    required String description,
+    required double price,
     required File image,
   }) async {
-    state = const AsyncValue.loading();
     try {
-      final service = await ServicesApiServices().addService(
-        serviceName: serviceName,
-        serviceCategory: serviceCategory,
-        serviceDetails: serviceDetails,
-        rate: rate,
+      state = const AsyncValue.loading();
+
+      await ServicesApiServices().addService(
+        serviceName: name,
+        serviceCategory: category,
+        serviceDetails: description,
+        rate: price,
         image: image,
       );
 
-      state = AsyncValue.data(service);
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+      log('Service added successfully: $name');
+      await getServices(); // Refresh list
+    } catch (error, stackTrace) {
+      log('Error adding service "$name": $error');
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 
-  //update service
-  Future<ServiceModel> updateService(
-      {required id,
-      required name,
-      required category,
-      required description,
-      required price,
-      required imageUrls}) async {
+  // Update an existing service
+  Future<void> updateService({
+    required String id,
+    required String name,
+    required String category,
+    required String description,
+    required double price,
+    required List<String> imageUrls,
+  }) async {
     try {
-      final response = await ServicesApiServices().updateService(
-          id: id,
-          name: name,
-          category: category,
-          description: description,
-          price: price,
-          imageUrls: imageUrls);
-      return response;
-    } catch (e) {
-      throw Exception(e);
+      state = const AsyncValue.loading();
+
+      await ServicesApiServices().updateService(
+        id: id,
+        name: name,
+        category: category,
+        description: description,
+        price: price,
+        imageUrls: imageUrls,
+      );
+
+      log('Service updated successfully: $id');
+      await getServices(); // Refresh list
+    } catch (error, stackTrace) {
+      log('Error updating service "$id": $error');
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 
-  //delete service
-  Future<void> deleteService({required id}) async {
+  // Delete a service
+  Future<void> deleteService({required String id}) async {
     try {
+      state = const AsyncValue.loading();
+
       await ServicesApiServices().deleteService(id: id);
-    } catch (e) {
-      throw Exception(e);
+
+      log('Service deleted successfully: $id');
+      await getServices(); // Refresh list
+    } catch (error, stackTrace) {
+      log('Error deleting service "$id": $error');
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 }

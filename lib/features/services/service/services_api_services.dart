@@ -1,9 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:handcar_ventor/core/service/base_url.dart';
 import 'package:handcar_ventor/features/services/model/service_model.dart';
-import 'package:handcar_ventor/features/services/model/service_request_model.dart';
 
 class ServicesApiServices {
   static final Dio dio = Dio(
@@ -25,7 +25,7 @@ class ServicesApiServices {
   }
 
   // add service
-  Future<ServiceModel> addService({
+  Future<Map<String, dynamic>> addService({
     required String serviceName,
     required String serviceCategory,
     required String serviceDetails,
@@ -33,32 +33,49 @@ class ServicesApiServices {
     required File image,
   }) async {
     try {
+      // Create form data
       final formData = FormData.fromMap({
         'Service_name': serviceName,
         'Service_category': serviceCategory,
         'Service_details': serviceDetails,
         'Rate': rate.toString(),
-        'Image': await MultipartFile.fromFile(image.path),
+        'Image': await MultipartFile.fromFile(
+          image.path,
+          filename: 'service_image.jpg',
+        ),
       });
-
+      log('Form Data: ${formData.fields}');
+      // Make API call
       final response = await dio.post(
-        '/add_service',
+        '/add_service', // Updated endpoint path
         data: formData,
+        options: Options(
+          headers: {
+            'Accept': '*/*',
+            'Content-Type': 'multipart/form-data',
+            // Add any additional headers if needed
+          },
+          validateStatus: (status) {
+            return status! < 500; // Accept all status codes less than 500
+          },
+        ),
       );
 
       if (response.statusCode == 201) {
-        return ServiceModel(
-          id: response.data['service_id'],
-          serviceName: serviceName,
-          serviceCategory: serviceCategory,
-          serviceDetails: serviceDetails,
-          rate: rate,
-          imageUrl: response.data['image_url'],
+        return response.data;
+      } else {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          error: 'Failed to add service: ${response.statusMessage}',
         );
       }
-    
-      throw Exception('Failed to add service');
-  
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        throw Exception(
+            'Service endpoint not found. Please check the API URL.');
+      }
+      throw Exception('Failed to add service: ${e.message}');
     } catch (e) {
       throw Exception('Failed to add service: $e');
     }
@@ -81,7 +98,7 @@ class ServicesApiServices {
             'rate': price,
             'imageUrl': imageUrls
           }));
-     
+
       return ServiceModel.fromJson(response.data);
     } catch (e) {
       throw Exception(e);
@@ -92,17 +109,6 @@ class ServicesApiServices {
   Future<void> deleteService({required id}) async {
     try {
       await dio.delete('/posts/$id');
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  // get services request from user
-  static Future<ServiceRequestModel> getServiceRequest(
-      {required int id}) async {
-    try {
-      final response = await dio.get('/posts/$id');
-      return ServiceRequestModel.fromJson(response.data);
     } catch (e) {
       throw Exception(e);
     }
