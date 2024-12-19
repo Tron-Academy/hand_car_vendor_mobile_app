@@ -3,7 +3,12 @@ import 'package:handcar_ventor/core/extension/theme_extension.dart';
 
 class PriceField extends StatelessWidget {
   final TextEditingController controller;
-  const PriceField({super.key, required this.controller});
+  // In TextFieldWidget
+final String? Function(String?)? validator;
+
+// ... in the TextField widget:
+
+  const PriceField({super.key, required this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,9 @@ class PriceField extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(context.space.space_100),
         ),
-        child: TextField(
+        child: TextFormField(
+         validator: validator,
+          controller: controller,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             border: const OutlineInputBorder(borderSide: BorderSide.none),

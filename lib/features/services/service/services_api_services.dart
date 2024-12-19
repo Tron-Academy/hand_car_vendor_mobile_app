@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -34,21 +33,30 @@ class ServicesApiServices {
   }) async {
     try {
       // Create form data
-      final formData = FormData.fromMap({
-        'Service_name': serviceName,
-        'Service_category': serviceCategory,
-        'Service_details': serviceDetails,
-        'Rate': rate.toString(),
-        'Image': await MultipartFile.fromFile(
-          image.path,
-          filename: 'service_image.jpg',
-        ),
-      });
-      log('Form Data: ${formData.fields}');
+      // final formData = FormData.fromMap({
+      //   'Service_name': serviceName,
+      //   'Service_category': serviceCategory,
+      //   'Service_details': serviceDetails,
+      //   'Rate': rate.toString(),
+      //   'Image': await MultipartFile.fromFile(
+      //     image.path,
+      //     filename: 'service_image.jpg',
+      //   ),
+      // });
+      // log('Form Data: ${formData.fields}');
       // Make API call
       final response = await dio.post(
         '/add_service', // Updated endpoint path
-        data: formData,
+        data: FormData.fromMap({  // Use FormData instead of Map){
+          "Service_name": serviceName,
+          "Service_category":serviceCategory,
+          "Service_details":serviceDetails,
+          "Rate": rate.toString(),
+          "Image": await MultipartFile.fromFile(
+            image.path,
+            filename: 'service_image.jpg',
+          ),
+        }),
         options: Options(
           headers: {
             'Accept': '*/*',

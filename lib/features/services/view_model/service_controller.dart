@@ -30,27 +30,27 @@ class ServiceController extends _$ServiceController {
 
   // Add a new service
   Future<void> addService({
-    required String name,
-    required String category,
-    required String description,
-    required double price,
+    required String serviceName,
+    required String serviceCategory,
+    required String serviceDetails,
+    required double rate,
     required File image,
   }) async {
     try {
       state = const AsyncValue.loading();
 
       await ServicesApiServices().addService(
-        serviceName: name,
-        serviceCategory: category,
-        serviceDetails: description,
-        rate: price,
+        serviceName: serviceName,
+        serviceCategory: serviceCategory,
+        serviceDetails: serviceDetails,
+        rate: rate,
         image: image,
       );
 
-      log('Service added successfully: $name');
+      log('Service added successfully: $serviceName');
       await getServices(); // Refresh list
     } catch (error, stackTrace) {
-      log('Error adding service "$name": $error');
+      log('Error adding service "$serviceName": $error');
       state = AsyncValue.error(error, stackTrace);
     }
   }

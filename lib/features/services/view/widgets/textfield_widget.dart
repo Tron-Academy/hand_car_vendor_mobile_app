@@ -5,7 +5,12 @@ class TextFieldWidget extends StatelessWidget {
   final String hintText;
   final bool isLarge;
   final TextEditingController controller;
-  const TextFieldWidget({super.key, required this.hintText, this.isLarge = false, required this.controller});
+  // In TextFieldWidget
+final String? Function(String?)? validator;
+
+// ... in the TextField widget:
+
+  const TextFieldWidget({super.key, required this.hintText, this.isLarge = false, required this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,8 @@ class TextFieldWidget extends StatelessWidget {
         color: Colors.white,
       ),
       child: TextFormField(
+        controller: controller,
+        validator: validator,
         maxLines: isLarge ? null : 1,
         expands: isLarge,
         decoration: InputDecoration(
