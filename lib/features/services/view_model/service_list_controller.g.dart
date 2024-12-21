@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_controller.dart';
+part of 'service_list_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$serviceControllerHash() => r'd5710481335709eb203dc835c297f0ef4756159e';
+String _$serviceListControllerHash() =>
+    r'260a61413a99d37834e9bd2c61a4b69f465024fd';
 
-/// See also [ServiceController].
-@ProviderFor(ServiceController)
-final serviceControllerProvider =
-    AutoDisposeAsyncNotifierProvider<ServiceController, ServiceModel?>.internal(
-  ServiceController.new,
-  name: r'serviceControllerProvider',
+/// See also [ServiceListController].
+@ProviderFor(ServiceListController)
+final serviceListControllerProvider = AutoDisposeAsyncNotifierProvider<
+    ServiceListController, List<ServiceModel>>.internal(
+  ServiceListController.new,
+  name: r'serviceListControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$serviceControllerHash,
+      : _$serviceListControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ServiceController = AutoDisposeAsyncNotifier<ServiceModel?>;
+typedef _$ServiceListController = AutoDisposeAsyncNotifier<List<ServiceModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

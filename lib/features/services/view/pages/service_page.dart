@@ -3,21 +3,47 @@ import 'package:go_router/go_router.dart';
 import 'package:handcar_ventor/core/extension/theme_extension.dart';
 import 'package:handcar_ventor/features/services/view/pages/add_service_page.dart';
 import 'package:handcar_ventor/features/services/view/widgets/service_card_widget.dart';
+import 'package:handcar_ventor/features/services/view_model/service_list_controller.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:handcar_ventor/features/services/view_model/service_controller.dart';
 
-class ServicePage extends StatelessWidget {
+class ServicePage extends ConsumerWidget {
   static const route = "/service";
   const ServicePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final servicesAsync = ref.watch(serviceListControllerProvider);
+
     return Scaffold(
-      //List View For Added Services
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => const ServiceCardWidget(
-          title: 'Tyre Change',
-          subtitle: 'General',
-          price: '124',
+      appBar: AppBar(
+        title: const Text('Services'),
+      ),
+      body: servicesAsync.when(
+        data: (services) {
+          if (services == null || services.isEmpty) {
+            return const Center(
+              child: Text("No services available"),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: services.length,
+            itemBuilder: (context, index) {
+              final service = services[index];
+              return ServiceCardWidget(
+                title: service.serviceName,
+                subtitle: service.serviceCategory,
+                price: service.rate.toString(),
+              );
+            },
+          );
+        },
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (error, stack) => Center(
+          child: Text("Error: $error"),
         ),
       ),
       floatingActionButton: FloatingActionButton(

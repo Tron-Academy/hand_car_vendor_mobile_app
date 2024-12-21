@@ -9,26 +9,36 @@ part 'service_controller.g.dart';
 
 @riverpod
 class ServiceController extends _$ServiceController {
+  late final ServicesApiServices _apiServices;
+
   @override
-  FutureOr<ServiceModel?> build() async {
-    return null; // Default null value
+  Future<ServiceModel?> build() async {
+    _apiServices = ServicesApiServices();
+    return _fetchInitialService();
   }
 
-  // Get all services
- Future<void> getServices() async {
-  try {
-    state = const AsyncValue.loading();
-    final response = await ServicesApiServices().getService();
-  state = AsyncValue<List<ServiceModel>>.data(response) as AsyncValue<ServiceModel?>;
-  } catch (error, stackTrace) {
-    log('Error fetching services: $error', error: error, );
-    state = AsyncValue.error(error, stackTrace);
-  } finally {
-    // Notify UI about the end of loading state (optional)
+  Future<ServiceModel?> _fetchInitialService() async {
+    try {
+      final services = await _apiServices.getService();
+      return services.isNotEmpty ? services.first : null;
+    } catch (error) {
+      log('Error fetching initial service: $error');
+      throw error;
+    }
   }
-}
 
-  // Add a new service
+  /// Fetch all services
+  Future<List<ServiceModel>> fetchServices() async {
+    try {
+      final services = await _apiServices.getService();
+      return services;
+    } catch (error) {
+      log('Error fetching services: $error');
+      throw error;
+    }
+  }
+
+  /// Add a new service
   Future<void> addService({
     required String serviceName,
     required String serviceCategory,
@@ -37,9 +47,8 @@ class ServiceController extends _$ServiceController {
     required File image,
   }) async {
     try {
-      state = const AsyncValue.loading();
-
-      await ServicesApiServices().addService(
+      state = const AsyncLoading();
+      await _apiServices.addService(
         serviceName: serviceName,
         serviceCategory: serviceCategory,
         serviceDetails: serviceDetails,
@@ -48,14 +57,15 @@ class ServiceController extends _$ServiceController {
       );
 
       log('Service added successfully: $serviceName');
-      await getServices(); // Refresh list
+      final updatedService = await _fetchInitialService();
+      state = AsyncData(updatedService);
     } catch (error, stackTrace) {
       log('Error adding service "$serviceName": $error');
-      state = AsyncValue.error(error, stackTrace);
+      state = AsyncError(error, stackTrace);
     }
   }
 
-  // Update an existing service
+  /// Update an existing service
   Future<void> updateService({
     required String id,
     required String name,
@@ -65,9 +75,8 @@ class ServiceController extends _$ServiceController {
     required List<String> imageUrls,
   }) async {
     try {
-      state = const AsyncValue.loading();
-
-      await ServicesApiServices().updateService(
+      state = const AsyncLoading();
+      await _apiServices.updateService(
         id: id,
         name: name,
         category: category,
@@ -77,25 +86,26 @@ class ServiceController extends _$ServiceController {
       );
 
       log('Service updated successfully: $id');
-      await getServices(); // Refresh list
+      final updatedService = await _fetchInitialService();
+      state = AsyncData(updatedService);
     } catch (error, stackTrace) {
       log('Error updating service "$id": $error');
-      state = AsyncValue.error(error, stackTrace);
+      state = AsyncError(error, stackTrace);
     }
   }
 
-  // Delete a service
+  /// Delete a service
   Future<void> deleteService({required String id}) async {
     try {
-      state = const AsyncValue.loading();
-
-      await ServicesApiServices().deleteService(id: id);
+      state = const AsyncLoading();
+      await _apiServices.deleteService(id: id);
 
       log('Service deleted successfully: $id');
-      await getServices(); // Refresh list
+      final updatedService = await _fetchInitialService();
+      state = AsyncData(updatedService);
     } catch (error, stackTrace) {
       log('Error deleting service "$id": $error');
-      state = AsyncValue.error(error, stackTrace);
+      state = AsyncError(error, stackTrace);
     }
   }
 }
