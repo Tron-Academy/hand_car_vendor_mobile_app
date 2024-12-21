@@ -5,7 +5,6 @@ import 'package:handcar_ventor/features/services/view/pages/add_service_page.dar
 import 'package:handcar_ventor/features/services/view/widgets/service_card_widget.dart';
 import 'package:handcar_ventor/features/services/view_model/service_list_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:handcar_ventor/features/services/view_model/service_controller.dart';
 
 class ServicePage extends ConsumerWidget {
   static const route = "/service";
@@ -21,7 +20,7 @@ class ServicePage extends ConsumerWidget {
       ),
       body: servicesAsync.when(
         data: (services) {
-          if (services == null || services.isEmpty) {
+          if (services.isEmpty) {
             return const Center(
               child: Text("No services available"),
             );
