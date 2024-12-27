@@ -23,7 +23,7 @@ class ServiceController extends _$ServiceController {
       return services.isNotEmpty ? services.first : null;
     } catch (error) {
       log('Error fetching initial service: $error');
-      throw error;
+      rethrow;
     }
   }
 
@@ -34,7 +34,7 @@ class ServiceController extends _$ServiceController {
       return services;
     } catch (error) {
       log('Error fetching services: $error');
-      throw error;
+      rethrow;
     }
   }
 

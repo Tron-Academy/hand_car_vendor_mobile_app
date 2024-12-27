@@ -15,9 +15,6 @@ class ServicePage extends ConsumerWidget {
     final servicesAsync = ref.watch(serviceListControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Services'),
-      ),
       body: servicesAsync.when(
         data: (services) {
           if (services.isEmpty) {

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -8,20 +9,28 @@ class ServicesApiServices {
   static final Dio dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
+      validateStatus: (status) => status != null && status < 500, // Accept all status codes below 500
     ),
   );
 
   // get all services
-  Future<List<ServiceModel>> getService() async {
-    try {
-      final response = await dio.get('/posts');
-      return (response.data as List)
-          .map((e) => ServiceModel.fromJson(e))
-          .toList();
-    } catch (e) {
-      throw Exception(e);
+Future<List<ServiceModel>> getService() async {
+  try {
+    final response = await dio.get('/view_services');
+    if (response.statusCode == 200) {
+      if (response.data is Map<String, dynamic> && response.data.containsKey('services')) {
+        final serviceList = response.data['services'] as List<dynamic>;
+        return serviceList.map((e) => ServiceModel.fromJson(e)).toList();
+      } else {
+        throw Exception('Unexpected response format');
+      }
+    } else {
+      throw Exception('Failed to fetch services. Status code: ${response.statusCode}');
     }
+  } catch (e) {
+    rethrow;
   }
+}
 
   // add service
   Future<Map<String, dynamic>> addService({
@@ -32,93 +41,72 @@ class ServicesApiServices {
     required File image,
   }) async {
     try {
-      // Create form data
-      // final formData = FormData.fromMap({
-      //   'Service_name': serviceName,
-      //   'Service_category': serviceCategory,
-      //   'Service_details': serviceDetails,
-      //   'Rate': rate.toString(),
-      //   'Image': await MultipartFile.fromFile(
-      //     image.path,
-      //     filename: 'service_image.jpg',
-      //   ),
-      // });
-      // log('Form Data: ${formData.fields}');
-      // Make API call
+      final formData = FormData.fromMap({
+        'Service_name': serviceName,
+        'Service_category': serviceCategory,
+        'Service_details': serviceDetails,
+        'Rate': rate.toString(),
+        'Image': await MultipartFile.fromFile(
+          image.path,
+          filename: 'service_image.jpg',
+        ),
+      });
+
       final response = await dio.post(
-        '/add_service', // Updated endpoint path
-        data: FormData.fromMap({  // Use FormData instead of Map){
-          "Service_name": serviceName,
-          "Service_category":serviceCategory,
-          "Service_details":serviceDetails,
-          "Rate": rate.toString(),
-          "Image": await MultipartFile.fromFile(
-            image.path,
-            filename: 'service_image.jpg',
-          ),
-        }),
+        '/services/add/', // Update this to match your backend route
+        data: formData,
         options: Options(
           headers: {
-            'Accept': '*/*',
             'Content-Type': 'multipart/form-data',
-            // Add any additional headers if needed
-          },
-          validateStatus: (status) {
-            return status! < 500; // Accept all status codes less than 500
           },
         ),
       );
 
-      if (response.statusCode == 201) {
-        return response.data;
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data ?? {};
       } else {
-        throw DioException(
-          requestOptions: response.requestOptions,
-          response: response,
-          error: 'Failed to add service: ${response.statusMessage}',
-        );
+        throw Exception('Failed to add service: ${response.statusMessage}');
       }
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 404) {
-        throw Exception(
-            'Service endpoint not found. Please check the API URL.');
-      }
-      throw Exception('Failed to add service: ${e.message}');
     } catch (e) {
+      print('Error adding service: $e');
       throw Exception('Failed to add service: $e');
     }
   }
 
-  // update service
-  Future<ServiceModel> updateService(
-      {required id,
-      required name,
-      required category,
-      required description,
-      required price,
-      required imageUrls}) async {
+  // Adjust other methods similarly
+  Future<ServiceModel> updateService({
+    required String id,
+    required String name,
+    required String category,
+    required String description,
+    required double price,
+    required List<String> imageUrls,
+  }) async {
     try {
-      final response = await dio.put('/posts/$id',
-          data: FormData.fromMap({
-            'serviceName': name,
-            'serviceCategory': category,
-            'serviceDetails': description,
-            'rate': price,
-            'imageUrl': imageUrls
-          }));
+      final response = await dio.put(
+        '/services/update/$id/', // Update this path
+        data: {
+          'serviceName': name,
+          'serviceCategory': category,
+          'serviceDetails': description,
+          'rate': price,
+          'imageUrl': imageUrls
+        },
+      );
 
       return ServiceModel.fromJson(response.data);
     } catch (e) {
-      throw Exception(e);
+      log('Error updating service: $e');
+      throw Exception('Failed to update service: $e');
     }
   }
 
-  // delete service
-  Future<void> deleteService({required id}) async {
+  Future<void> deleteService({required String id}) async {
     try {
-      await dio.delete('/posts/$id');
+      await dio.delete('/services/delete/$id/'); // Update this path
     } catch (e) {
-      throw Exception(e);
+      log('Error deleting service: $e');
+      throw Exception('Failed to delete service: $e');
     }
   }
 }
