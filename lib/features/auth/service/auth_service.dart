@@ -99,7 +99,7 @@ class VendorAuthService {
 
   Future<Map<String, dynamic>> login(String phoneNumber, String password) async {
   try {
-    final response = await _dio.post('/UserLogin',
+    final response = await _dio.post('/VendorLogin',
         data: FormData.fromMap(
           {'phone_number': phoneNumber, 'password': password},
         ));
