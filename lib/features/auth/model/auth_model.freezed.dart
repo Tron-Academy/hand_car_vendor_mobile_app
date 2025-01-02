@@ -20,8 +20,10 @@ AuthModel _$AuthModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: 'access_token')
-  String get accessToken => throw _privateConstructorUsedError;
+  String get accessToken =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'refresh_token')
   String get refreshToken => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -157,9 +159,11 @@ class _$AuthModelImpl extends _AuthModel {
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'access_token')
   final String accessToken;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'refresh_token')
   final String refreshToken;
@@ -220,9 +224,10 @@ abstract class _AuthModel extends AuthModel {
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
       _$AuthModelImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'access_token')
-  String get accessToken;
+  String get accessToken; // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'refresh_token')
   String get refreshToken;
