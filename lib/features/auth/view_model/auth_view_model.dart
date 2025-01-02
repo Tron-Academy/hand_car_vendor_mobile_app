@@ -1,6 +1,6 @@
-
-
 // Provider for TokenStorage
+import 'dart:developer';
+
 import 'package:handcar_ventor/core/utils/token_storage.dart';
 import 'package:handcar_ventor/features/auth/model/auth_model.dart';
 import 'package:handcar_ventor/features/auth/service/auth_service.dart';
@@ -15,12 +15,12 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<AuthModel?> build() async {
     final tokenStorage = ref.read(tokenStorageProvider);
-    
+
     // Check if we have tokens stored
     if (tokenStorage.hasTokens) {
       final accessToken = tokenStorage.getAccessToken()!;
       final refreshToken = tokenStorage.getRefreshToken()!;
-      
+
       // Create AuthModel from stored tokens
       return AuthModel(
         accessToken: accessToken,
@@ -36,25 +36,21 @@ class AuthController extends _$AuthController {
     try {
       final Map<String, dynamic> loginResponse =
           await ref.read(vendorAuthServiceProvider).login(username, password);
+      log(loginResponse.toString());
 
       final authModel = AuthModel.fromJson(loginResponse);
-      
+
       // Save tokens to storage
       await ref.read(tokenStorageProvider).saveTokens(
-        accessToken: authModel.accessToken,
-        refreshToken: authModel.refreshToken,
-      );
-           
-      
+            accessToken: authModel.accessToken,
+            refreshToken: authModel.refreshToken,
+          );
+
       state = AsyncValue.data(authModel);
     } catch (e, st) {
       state = AsyncValue.error(e, st);
     }
   }
-
-
-
-
 
   Future<void> logout() async {
     state = const AsyncValue.loading();

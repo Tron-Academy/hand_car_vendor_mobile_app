@@ -68,7 +68,7 @@ Future<List<ServiceModel>> getService() async {
         throw Exception('Failed to add service: ${response.statusMessage}');
       }
     } catch (e) {
-      print('Error adding service: $e');
+      log('Error adding service: $e');
       throw Exception('Failed to add service: $e');
     }
   }
