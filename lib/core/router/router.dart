@@ -10,7 +10,7 @@ import 'package:handcar_ventor/features/services/view/pages/add_service_page.dar
 import 'package:handcar_ventor/features/services/view/pages/service_page.dart';
 
 final router = GoRouter(
-  initialLocation: NavigationPage.route,
+  initialLocation: VendorLoginPage.route,
   routes: [
     //Navigation Route
     GoRoute(path: NavigationPage.route, builder: (context, state) => const NavigationPage()),
